@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 export default function Register() {
   const [email, setEmail] = useState<string>('');
