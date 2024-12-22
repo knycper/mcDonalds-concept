@@ -1,8 +1,9 @@
 'use client';
 
 import Link from "next/link";
-
+import axios from "axios";
 import React, { useState } from "react";
+import { useRouter } from 'next/navigation';
 
 export default function Register() {
   const [email, setEmail] = useState<string>('');
@@ -14,7 +15,11 @@ export default function Register() {
   const [bigLetter, setBigLetter] = useState<boolean>(false)
   const [eight, setEight] = useState<boolean>(false)
   const [emailOkay, setEmailOkay] = useState<boolean>(false)
+  const [error, setError] = useState<string>('')
+
   const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+  const router = useRouter()
 
   function checkNum(passw: string): boolean {
     const hasNumber = /\d/.test(passw);
@@ -58,12 +63,12 @@ export default function Register() {
         if (password === confPassw) {
             return true
         } else {
-            alert("podane hasła różnią się! Spróbuj jeszcze raz")
+            setError("podane hasła różnią się! Spróbuj jeszcze raz")
             setConfPassw('')
             return false
         }
     } else {
-        alert("Podane hasło nie zawiera któregoś z oczekiwanych elementów! Spróbuj jeszcze raz");
+        setError("Podane hasło nie zawiera któregoś z oczekiwanych elementów! Spróbuj jeszcze raz");
         setPassword('')
         setConfPassw('')
         return false
@@ -72,10 +77,25 @@ export default function Register() {
 
   function handleRegister() {
     if (checkPassw() && emailOkay) {
-        // przeszlo
-        alert("dziala")
-    } else {
-        alert("zle")
+        const data = {
+          email,
+          password,
+          adress,
+          phoneNumber
+        }
+        axios.post("http://localhost:3001/register", data)
+        .then(response => {
+          console.log("dostalem info od serwera: ", response.data.message)
+          if (response.data.message === "Użytkownik zarejestrowany pomyślnie!") {
+            router.push('/')
+          } else {
+            setError(`Błąd: ${response.data.message}`)
+          }
+        })
+        .catch(error => {
+          console.log(error)
+          setError(`Wystąpił błąd podczas rejestracji: ${error.response.data.message}`)
+        })
     }
   }
 
@@ -132,6 +152,11 @@ export default function Register() {
           onChange={(e) => setConfPassw(e.target.value)}
           className="w-full p-2 border border-yellow-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-yellow-500"
         />
+        {error !== '' && (
+          <p className="text-red-500 bg-red-100 border border-red-500 p-2 rounded-md text-sm mb-4">
+            {`Wystąpił błąd podczas rejestracji: ${error}`}
+          </p>
+        )}
         <p className="text-sm text-yellow-600 mb-4">Podaj adres zamieszkania i nr telefonu, aby nie podawać przy dostawie! (opcjonalne)</p>
         <input
           type="text"
