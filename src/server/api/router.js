@@ -3,6 +3,8 @@ import bcrypt from 'bcrypt';
 import User from '../models/User.js';
 import { v4 as uuidv4 } from 'uuid';
 
+import readMenu from '../../menu/readMenu.js'
+
 const router = express.Router();
 
 router.post('/register', async (req, res) => {
@@ -31,5 +33,37 @@ router.post('/register', async (req, res) => {
         return res.status(500).json({ message: "Błąd serwera!" });
     }
 });
+
+router.post('/check', async (req, res) => {
+    try {
+        const { email, password } = req.body
+        const user = await User.findOne({ email })
+        if (!user) {
+            return res.status(404).json({ message: "Niepoprawny e-mail! Spróbuj jeszcze raz" })
+        }
+        const isPasswordOkay = await bcrypt.compare(password, user.password)
+
+        if (!isPasswordOkay) {
+            return res.status(401).json({ message: "Niepoprawne hasło! Spróbuj jeszcze raz" })
+        }
+
+        const { phoneNumber, adress } = user
+
+        return res.status(200).json({ message: "Zalogowano Pomyślnie", 
+            user: {
+                email,
+                adress,
+                phoneNumber
+            } })
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({ message: "Błąd serwera!" })
+    }
+})
+
+router.get('/file', (req, res) => {
+    const data = readMenu()
+    return res.status(200).json({ message: data })
+})
 
 export default router;

@@ -41,7 +41,7 @@
     "src/server/api/server.js",
     "src/server/database.js",
     "src/server/models/User.js"
-  ],
+, "src/menu/readMenu.js"  ],
   "exclude": [
     "node_modules"
   ]
