@@ -3,176 +3,249 @@
         {
             "id": 1,
             "name": "BigMac",
-            "price": 15.90,
+            "price": "15.90",
             "ingredients": ["kotlety wołowe", "sałata", "ser cheddar", "cebula", "ogórek konserwowy", "sos Big Mac", "bułka z sezamem"],
             "allergens": ["gluten", "mleko", "jaja", "musztarda", "seler", "siarczyny"],
             "type": ["zestaw_glowny", "burgery"],
-            "imageUrl": "https://cdn.mcdonalds.pl/uploads/20240702143550/354267-big-mac-na-www-1090x664px-big-mac-2.png"
+            "imageUrl": "/pictures/big-mac.png",
+            "dodatki": ["jalapeno", "boczek", "ser"]
         },
         {
             "id": 2,
             "name": "McChicken",
-            "price": 14.90,
+            "price": "14.90",
             "ingredients": ["Kotlet z kurczaka", "sałata", "majonez", "bułka z sezamem"],
             "allergens": ["gluten", "mleko", "jaja", "musztarda", "seler", "siarczyny"],
-            "type": ["zestaw_glowny", "burgery"],
-            "imageUrl": "https://cdn.mcdonalds.pl/uploads/20221109152352/mcchicken2.jpg"
+            "type": ["zestaw_glowny", "burgery", "kurczak"],
+            "imageUrl": "/pictures/mcchiken.png",
+            "dodatki": ["jalapeno", "boczek", "ser"]
         },
         {
             "id": 3,
             "name": "Chikker",
-            "price": 6.90,
+            "price": "6.90",
             "ingredients": ["bułka pszenna", "kotlet z kurczaka", "sos majonezowy", "sałata"],
             "allergens": ["gluten", "mleko", "jaja", "musztarda", "seler", "siarczyny"],
-            "type": ["2_for_u_glowny", "burgery"],
-            "imageUrl": "https://cdn.mcdonalds.pl/uploads/20240606104639/354119-chikkery-na-www-540x450px-chikker.jpg"
+            "type": ["2 for U", "burgery", "kurczak"],
+            "imageUrl": "/pictures/chikker.png"
         },
         {
             "id": 4,
-            "name": "Frytki",
-            "price": [
-                {"name": "małe", "cena": 8.90, "imgageUrl": "https://cdn.mcdonalds.pl/uploads/20191105161427/opt/07-01-frytki-male.jpg"},
-                {"name": "średnie", "cena": 9.50, "imgageUrl": "https://cdn.mcdonalds.pl/uploads/20191105161658/opt/07-01-frytki-srednie.jpg"},
-                {"name": "duże", "cena": 9.90, "imgageUrl": "https://cdn.mcdonalds.pl/uploads/20191105161939/opt/07-01-frytki-duze-png.png"}
-            ],
-            "ingredients": null,
-            "allergens": ["gluten"],
-            "type": ["2_for_u_dodatek", "zestaw_dodatek", "dodatki"]
+            "name": "Frytki małe",
+            "price": "8.90",
+            "imageUrl": "/pictures/male_frytki.png",
+            "type": ["2_for_u_dodatek", "zestaw_dodatek", "frytki i dodatki"],
+            "allergens": ["gluten"]
         },
         {
             "id": 5,
+            "name": "Frytki średnie", 
+            "price": "9.50", 
+            "imageUrl": "/pictures/srednie_frytki.png",
+            "type": ["2_for_u_dodatek", "zestaw_dodatek", "frytki i dodatki"],
+            "allergens": ["gluten"]
+        },
+        {
+            "id": 6,
+            "name": "Frytki duże", 
+            "price": "9.90", 
+            "imageUrl": "/pictures/duze_frytki.png",
+            "type": ["zestaw_dodatek", "frytki i dodatki"],
+            "allergens": ["gluten"]
+        },
+        {
+            "id": 7,
             "name": "Jalapeno Burger",
-            "price": 6.90,
+            "price": "6.90",
             "ingredients": ["kotlet wołowy", "papryczki jalapeno", "ser cheddar", "cebula", "sos BBQ", "bułka pszenna"],
             "allergens": ["gluten", "mleko", "jaja", "musztarda", "seler"],
             "type": ["zestaw_glowny", "burgery"],
-            "imageUrl": "https://cdn.mcdonalds.pl/uploads/20200602191807/jalapeno-burger2.jpg"
+            "imageUrl": "/pictures/jalapeno_burger.png"
         },
         {
             "id": 8,
-            "name": "McNuggets",
-            "price": [
-                {"name": "4 sztuki", "cena": 9.90, "imageUrl": "https://cdn.mcdonalds.pl/uploads/20230528204841/347406-supreme-crispy-chicken-strips-i-chicken-box-na-www-1090x664px-2.png"},
-                {"name": "9 sztuk", "cena": 15.90, "imageUrl": "https://th.bing.com/th/id/OIP.wP7_uCu6Z2BRvxlGNIN7nAHaGI?rs=1&pid=ImgDetMain"},
-                {"name": "20 sztuk", "cena": 29.90, "imageUrl": "https://www.mcdonalds.at/wp-content/uploads/2021/09/web-neu-1500x1500-core-20er-chicken-mcnuggets-1.png"}
-            ],
-            "ingredients": ["nuggetsy z kurczaka w panierce"],
+            "name": "McNuggets 4 sztuki", 
+            "price": "9.90", 
+            "imageUrl": "/pictures/mcnuggets_4.png", 
+            "ingredients": ["nuggetsy z kurczaka w panierce"], 
             "allergens": ["gluten", "jaja"],
-            "type": ["zestaw_glowny", "dodatki"]
+            "type": ["zestaw_glowny", "kurczak"]
         },
         {
             "id": 9,
-            "name": "McWrap Classic",
-            "price": 17.90,
-            "ingredients": ["kurczak panierowany", "sałata", "pomidor", "sos", "placek tortilli"],
-            "allergens": ["gluten", "mleko", "jaja", "musztarda"],
-            "type": ["zestaw_glowny", "wrapy i sałatki"],
-            "imageUrl": "https://cdn.mcdonalds.pl/uploads/20221221160446/350367-mcwrap-2022-na-www-540x450px-7-mcwrap-klasyczny.jpg"
+            "name": "McNuggets 9 sztuk", 
+            "price": "15.90", 
+            "imageUrl": "/pictures/mcnuggets_9.png", 
+            "ingredients": ["nuggetsy z kurczaka w panierce"], 
+            "allergens": ["gluten", "jaja"],
+            "type": ["zestaw_glowny", "kurczak"]
         },
         {
             "id": 10,
-            "name": "Sałatka z Kurczakiem",
-            "price": 18.90,
-            "ingredients": ["mix sałat", "kurczak panierowany", "parmezan", "grzanki", "sos cezar", "pomidor"],
-            "allergens": ["gluten", "mleko", "ryby"],
-            "type": ["zestaw_glowny", "wrapy i sałatki"],
-            "imageUrl": "https://cdn.mcdonalds.pl/uploads/20210610183754/salatka-2021.jpg"
+            "name": "McNuggets 20 sztuk", 
+            "price": "29.90", 
+            "imageUrl": "/pictures/mcnuggets_20.png", 
+            "ingredients": ["nuggetsy z kurczaka w panierce"], 
+            "allergens": ["gluten", "jaja"],
+            "type": ["zestaw_glowny", "kurczak"]
         },
         {
             "id": 11,
-            "name": "Sosy",
-            "price": [
-                {
-                    "name": "sos BBQ",
-                    "cena": 2.50,
-                    "imgageUrl": "https://cdn.mcdonalds.pl/uploads/20191017165740/07-08-sos-barbecue.jpg"
-                },
-                {
-                    "name": "sos czosnkowy",
-                    "cena": 2.50,
-                    "imgageUrl": "https://cdn.mcdonalds.pl/uploads/20210803092555/opt/347517-wrap-tzatziki-na-www-540x450px-custom-h-6.jpg"
-                },
-                {
-                    "name": "sos słodko-kwaśny",
-                    "cena": 2.50,
-                    "imgageUrl": "https://cdn.mcdonalds.pl/uploads/20191017165852/07-09-sos-slodko-kwasny.jpg"
-                },
-                {
-                    "name": "sos śmietankowy",
-                    "cena": 2.50,
-                    "imgageUrl": "https://cdn.mcdonalds.pl/uploads/20191017170107/07-11-sos-smietanowy.jpg"
-                },
-                {
-                    "name": "keczup",
-                    "cena": 2.50,
-                    "imgageUrl": "https://cdn.mcdonalds.pl/uploads/20191017170629/07-15-ketchup.jpg"
-                }
-            ],
-            "allergens": ["musztarda", "jaja"],
-            "type": ["dodatki"]
+            "name": "McWrap Classic",
+            "price": "17.90",
+            "ingredients": ["kurczak panierowany", "sałata", "pomidor", "sos", "placek tortilli"],
+            "allergens": ["gluten", "mleko", "jaja", "musztarda"],
+            "type": ["zestaw_glowny", "wrapy i sałatki"],
+            "imageUrl": "/pictures/mcwrap.png",
+            "dodatki": ["jalapeno", "boczek", "ser", "kurczak"]
         },
         {
             "id": 12,
-            "name": "WieśMac",
-            "price": 16.90,
-            "ingredients": ["kotlet wołowy", "ser cheddar", "pomidor", "sałata", "sos musztardowy", "bułka z sezamem"],
-            "allergens": ["gluten", "mleko", "jaja", "musztarda"],
-            "type": ["zestaw_glowny", "burgery"],
-            "imageUrl": "https://cdn.mcdonalds.pl/uploads/20220922161256/wies-mac.jpg"
+            "name": "Sałatka z Kurczakiem",
+            "price": "18.90",
+            "ingredients": ["mix sałat", "kurczak panierowany", "parmezan", "grzanki", "sos cezar", "pomidor"],
+            "allergens": ["gluten", "mleko", "ryby"],
+            "type": ["zestaw_glowny", "wrapy i sałatki", "kurczak"],
+            "imageUrl": "/pictures/salatka-kurczak.png"
         },
         {
             "id": 13,
-            "name": "Hamburger",
-            "price": 6.90,
-            "ingredients": ["kotlet wołowy", "ogórek konserwowy", "cebula", "ketchup", "musztarda", "bułka z sezamem"],
-            "allergens": ["gluten", "jaja", "musztarda"],
-            "type": ["2_for_u_glowny", "burgery"],
-            "imageUrl": "https://cdn.mcdonalds.pl/uploads/20220922161719/hamburger2.jpg"
+            "name": "sos BBQ",
+            "price": "2.50",
+            "imageUrl": "/pictures/sos-bbq.png",
+            "allergens": ["musztarda", "jaja"],
+            "type": ["frytki i dodatki"]
         },
         {
             "id": 14,
-            "name": "Cheeseburger",
-            "price": 6.90,
-            "ingredients": ["kotlet wołowy", "ser cheddar", "ogórek konserwowy", "cebula", "ketchup", "musztarda", "bułka z sezamem"],
-            "allergens": ["gluten", "mleko", "jaja", "musztarda"],
-            "type": ["2_for_u_glowny", "burgery"],
-            "imageUrl": "https://cdn.mcdonalds.pl/uploads/20200602191344/cheeseburger2.jpg"
+            "name": "sos czosnkowy",
+            "price": "2.50",
+            "imageUrl": "/pictures/sos-czosnkowy.png",
+            "allergens": ["musztarda", "jaja"],
+            "type": ["frytki i dodatki"]
         },
         {
             "id": 15,
-            "name": "zestawy",
-            "price": {
-                "zwykly": {
-                    "cena": 24.90,
-                    "imageUrl": "https://cdn.mcdonalds.pl/uploads/20240708120552/354267-big-mac-na-www-1090x664px-mczestaw.png"
-                },
-                "powiekszony": {
-                    "cena": 29.90,
-                    "imageUrl": "https://cdn.mcdonalds.pl/uploads/20240708120552/354267-big-mac-na-www-1090x664px-mczestaw.png"
-                },
-                "2_for_u": {
-                    "cena": 9.90,
-                    "imageUrl": "https://cdn.mcdonalds.pl/uploads/20200617144103/mcd-www-packshoty-singlepage-2foru-1.png"
-                }
-            }
+            "name": "sos słodko-kwaśny",
+            "price": "2.50",
+            "imageUrl": "/pictures/sos-slodko-kwasny.png",
+            "allergens": ["musztarda", "jaja"],
+            "type": ["frytki i dodatki"]
         },
         {
             "id": 16,
-            "name": "napoje",
-            "price": {
-                "maly": 5.90,
-                "sredni": 7.90,
-                "duzy": 9.90
-            },
-            "ingredients": ["lód"],
-            "type": ["2_for_u_dodatek", "zestaw_dodatek", "napoje"],
-            "types": ["Coca-cola Zero", "Sprite", "Fanta", "Lipton Cytrynowy", "Lipton Brzoskiwniowy"],
-            "imageUrl": "https://cdn.mcdonalds.pl/uploads/20230919154152/1090x664kubek.png"
+            "name": "sos śmietankowy",
+            "price": "2.50",
+            "imageUrl": "/pictures/sos-smietankowy.png",
+            "allergens": ["musztarda", "jaja"],
+            "type": ["frytki i dodatki"]
         },
         {
-            "name": "types",
             "id": 17,
-            "types": ["burgery", "zestaw", "2_for_u", "dodatki", "napoje", "wrapy i sałatki"]
+            "name": "keczup",
+            "price": "2.50",
+            "imageUrl": "/pictures/keczup.png",
+            "allergens": ["musztarda", "jaja"],
+            "type": ["frytki i dodatki"]
+        },
+        {
+            "id": 18,
+            "name": "WieśMac",
+            "price": "16.90",
+            "ingredients": ["kotlet wołowy", "ser cheddar", "pomidor", "sałata", "sos musztardowy", "bułka z sezamem"],
+            "allergens": ["gluten", "mleko", "jaja", "musztarda"],
+            "type": ["zestaw_glowny", "burgery"],
+            "imageUrl": "/pictures/wies-mac.png",
+            "dodatki": ["jalapeno", "boczek", "ser"]
+        },
+        {
+            "id": 19,
+            "name": "Hamburger",
+            "price": "6.90",
+            "ingredients": ["kotlet wołowy", "ogórek konserwowy", "cebula", "ketchup", "musztarda", "bułka z sezamem"],
+            "allergens": ["gluten", "jaja", "musztarda"],
+            "type": ["2 for U", "burgery"],
+            "imageUrl": "/pictures/hamburger.png"
+        },
+        {
+            "id": 20,
+            "name": "Cheeseburger",
+            "price": "6.90",
+            "ingredients": ["kotlet wołowy", "ser cheddar", "ogórek konserwowy", "cebula", "ketchup", "musztarda", "bułka z sezamem"],
+            "allergens": ["gluten", "mleko", "jaja", "musztarda"],
+            "type": ["2 for U", "burgery"],
+            "imageUrl": "/pictures/cheeseburger.png"
         }
-    ]
+    ],
+    "napoje": [
+        {
+            "name": "Coca-cola",
+            "price": {
+                "maly": "5.90",
+                "sredni": "7.90",
+                "duzy": "9.90"
+            },
+            "imageUrl": "/pictures/kubek-picie.png"
+        },
+        {
+            "name": "Coca-cola Zero",
+            "price": {
+                "maly": "5.90",
+                "sredni": "7.90",
+                "duzy": "9.90"
+            },
+            "imageUrl": "/pictures/kubek-picie.png"
+        },
+        {
+            "name": "Sprite",
+            "price": {
+                "maly": "5.90",
+                "sredni": "7.90",
+                "duzy": "9.90"
+            },
+            "imageUrl": "/pictures/kubek-picie.png"
+        },
+        {
+            "name": "Fanta",
+            "price": {
+                "maly": "5.90",
+                "sredni": "7.90",
+                "duzy": "9.90"
+            },
+            "imageUrl": "/pictures/kubek-picie.png"
+        },
+        {
+            "name": "Lipton Cytrynowy",
+            "price": {
+                "maly": "5.90",
+                "sredni": "7.90",
+                "duzy": "9.90"
+            },
+            "imageUrl": "/pictures/kubek-picie.png"
+        },
+        {
+            "name": "Lipton Brzoskwiniowy",
+            "price": {
+                "maly": "5.90",
+                "sredni": "7.90",
+                "duzy": "9.90"
+            },
+            "imageUrl": "/pictures/kubek-picie.png"
+        }
+    ],
+    "types": ["burgery", "wrapy i sałatki", "zestaw", "2 for U", "frytki i dodatki", "napoje"],
+    "zestawy": {
+        "zwykly": {
+            "price": "24.90",
+            "imageUrl": "/pictures/zestaw.png"
+        },
+        "powiekszony": {
+            "price": "29.90",
+            "imageUrl": "/pictures/zestaw.png"
+        },
+        "2 for U": {
+            "price": "9.90",
+            "imageUrl": "/pictures/2_for_u.png"
+        }
+    }
 }

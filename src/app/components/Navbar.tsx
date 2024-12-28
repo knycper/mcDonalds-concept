@@ -9,19 +9,45 @@ export default function Navbar() {
     }
 
     return (
-        <div>
-            <Link 
-            href={"/"}
-            onClick={logOut}
-            >Wyloguj się</Link>
-            <Link
-            href={"/home/konto/info"}
-            >Informacje o Koncie
-            </Link>
-            <Link
-            href={"/home/konto/historia"}
-            >Historia konta
-            </Link>
+        <div className="bg-yellow-600 text-white p-4 shadow-md w-full">
+            <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center">
+                <div className="flex space-x-6">
+                    <Link
+                        href="/home"
+                        className="hover:text-yellow-300 transition"
+                    >
+                        Strona główna
+                    </Link>
+                    <Link
+                        href="/a_order"
+                        className="hover:text-yellow-300 transition"
+                    >
+                        Aktualne zamówienie
+                    </Link>
+                    <Link
+                        href="/home/konto/info"
+                        className="hover:text-yellow-300 transition"
+                    >
+                        Informacje konta
+                    </Link>
+                    <Link
+                        href="/home/konto/historia"
+                        className="hover:text-yellow-300 transition"
+                    >
+                        Historia zamówień
+                    </Link>
+                </div>
+
+                <div>
+                    <Link 
+                        href="/"
+                        onClick={logOut}
+                        className="hover:text-yellow-300 transition"
+                    >
+                        Wyloguj się
+                    </Link>
+                </div>
+            </div>
         </div>
-    )
+    );
 }
