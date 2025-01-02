@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { AllOrders, SetOrder, NormalOrder, DrinkOrder, ForYouOrder, SosOrder } from "@/app/components/types/types";
-import HistorySet from "@/app/components/HistoryTypes/HistorySet";
-import HistoryForYou from "@/app/components/HistoryTypes/HistoryForYou"
-import HistoryDrink from "@/app/components/HistoryTypes/HistoryDrink"
-import HistoryNormalOrder from "@/app/components/HistoryTypes/HistoryNormalOrder"
-import HistorySos from "@/app/components/HistoryTypes/HistorySos";
+import HistorySet from "@/app/components/TypesToShow/Set";
+import HistoryForYou from "@/app/components/TypesToShow/ForYou"
+import HistoryDrink from "@/app/components/TypesToShow/Drink"
+import HistoryNormalOrder from "@/app/components/TypesToShow/NormalOrder"
+import HistorySos from "@/app/components/TypesToShow/Sos";
 
 export default function OrderPage() {
     const [order, setOrder] = useState<AllOrders[]>([]);

@@ -1,6 +1,6 @@
 import { ForYouOrder } from "../types/types";
-import NormalOrderHist from "./HistoryNormalOrder";
-import HistoryDrink from "./HistoryDrink"
+import NormalOrderHist from "./NormalOrder";
+import HistoryDrink from "./Drink"
 
 interface HistoryForYouProps {
     forYouOrder: ForYouOrder;

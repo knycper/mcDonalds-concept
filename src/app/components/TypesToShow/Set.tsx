@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { SetOrder } from "../types/types";
-import NormalOrderHist from "./HistoryNormalOrder";
-import HistoryDrink from "./HistoryDrink";
+import NormalOrderHist from "./NormalOrder";
+import HistoryDrink from "./Drink";
 
 interface HistorySetProps {
     setOrder: SetOrder;
