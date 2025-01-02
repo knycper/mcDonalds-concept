@@ -1,251 +1,557 @@
 {
     "menu": [
         {
-            "id": 1,
+            "id": "1",
             "name": "BigMac",
             "price": "15.90",
-            "ingredients": ["kotlety wołowe", "sałata", "ser cheddar", "cebula", "ogórek konserwowy", "sos Big Mac", "bułka z sezamem"],
-            "allergens": ["gluten", "mleko", "jaja", "musztarda", "seler", "siarczyny"],
-            "type": ["zestaw_glowny", "burgery"],
+            "ingredients": [
+                "kotlety wołowe",
+                "sałata",
+                "ser cheddar",
+                "cebula",
+                "ogórek konserwowy",
+                "sos Big Mac",
+                "bułka z sezamem"
+            ],
+            "allergens": [
+                "gluten",
+                "mleko",
+                "jaja",
+                "musztarda",
+                "seler",
+                "siarczyny"
+            ],
+            "type": [
+                "zestaw_glowny",
+                "burgery"
+            ],
             "imageUrl": "/pictures/big-mac.png",
-            "dodatki": ["jalapeno", "boczek", "ser"]
+            "dodatki": [
+                "jalapeno",
+                "boczek",
+                "ser"
+            ]
         },
         {
-            "id": 2,
+            "id": "2",
             "name": "McChicken",
             "price": "14.90",
-            "ingredients": ["Kotlet z kurczaka", "sałata", "majonez", "bułka z sezamem"],
-            "allergens": ["gluten", "mleko", "jaja", "musztarda", "seler", "siarczyny"],
-            "type": ["zestaw_glowny", "burgery", "kurczak"],
+            "ingredients": [
+                "Kotlet z kurczaka",
+                "sałata",
+                "majonez",
+                "bułka z sezamem"
+            ],
+            "allergens": [
+                "gluten",
+                "mleko",
+                "jaja",
+                "musztarda",
+                "seler",
+                "siarczyny"
+            ],
+            "type": [
+                "zestaw_glowny",
+                "burgery",
+                "kurczak"
+            ],
             "imageUrl": "/pictures/mcchiken.png",
-            "dodatki": ["jalapeno", "boczek", "ser"]
+            "dodatki": [
+                "jalapeno",
+                "boczek",
+                "ser"
+            ]
         },
         {
-            "id": 3,
+            "id": "3",
             "name": "Chikker",
             "price": "6.90",
-            "ingredients": ["bułka pszenna", "kotlet z kurczaka", "sos majonezowy", "sałata"],
-            "allergens": ["gluten", "mleko", "jaja", "musztarda", "seler", "siarczyny"],
-            "type": ["2 for U", "burgery", "kurczak"],
+            "ingredients": [
+                "bułka pszenna",
+                "kotlet z kurczaka",
+                "sos majonezowy",
+                "sałata"
+            ],
+            "allergens": [
+                "gluten",
+                "mleko",
+                "jaja",
+                "musztarda",
+                "seler",
+                "siarczyny"
+            ],
+            "type": [
+                "2 for U",
+                "burgery",
+                "kurczak"
+            ],
             "imageUrl": "/pictures/chikker.png"
         },
         {
-            "id": 4,
+            "id": "4",
             "name": "Frytki małe",
             "price": "8.90",
             "imageUrl": "/pictures/male_frytki.png",
-            "type": ["2_for_u_dodatek", "zestaw_dodatek", "frytki i dodatki"],
-            "allergens": ["gluten"]
+            "type": [
+                "2_for_u_dodatek",
+                "zestaw_dodatek",
+                "frytki i dodatki"
+            ],
+            "allergens": [
+                "gluten"
+            ]
         },
         {
-            "id": 5,
-            "name": "Frytki średnie", 
-            "price": "9.50", 
+            "id": "5",
+            "name": "Frytki średnie",
+            "price": "9.50",
             "imageUrl": "/pictures/srednie_frytki.png",
-            "type": ["2_for_u_dodatek", "zestaw_dodatek", "frytki i dodatki"],
-            "allergens": ["gluten"]
+            "type": [
+                "2_for_u_dodatek",
+                "zestaw_dodatek",
+                "frytki i dodatki"
+            ],
+            "allergens": [
+                "gluten"
+            ]
         },
         {
-            "id": 6,
-            "name": "Frytki duże", 
-            "price": "9.90", 
+            "id": "6",
+            "name": "Frytki duże",
+            "price": "9.90",
             "imageUrl": "/pictures/duze_frytki.png",
-            "type": ["zestaw_dodatek", "frytki i dodatki"],
-            "allergens": ["gluten"]
+            "type": [
+                "zestaw_dodatek",
+                "frytki i dodatki"
+            ],
+            "allergens": [
+                "gluten"
+            ]
         },
         {
-            "id": 7,
+            "id": "7",
             "name": "Jalapeno Burger",
             "price": "6.90",
-            "ingredients": ["kotlet wołowy", "papryczki jalapeno", "ser cheddar", "cebula", "sos BBQ", "bułka pszenna"],
-            "allergens": ["gluten", "mleko", "jaja", "musztarda", "seler"],
-            "type": ["zestaw_glowny", "burgery"],
+            "ingredients": [
+                "kotlet wołowy",
+                "papryczki jalapeno",
+                "ser cheddar",
+                "cebula",
+                "sos jalapeno",
+                "bułka pszenna"
+            ],
+            "allergens": [
+                "gluten",
+                "mleko",
+                "jaja",
+                "musztarda",
+                "seler"
+            ],
+            "type": [
+                "2 for U",
+                "burgery"
+            ],
             "imageUrl": "/pictures/jalapeno_burger.png"
         },
         {
-            "id": 8,
-            "name": "McNuggets 4 sztuki", 
-            "price": "9.90", 
-            "imageUrl": "/pictures/mcnuggets_4.png", 
-            "ingredients": ["nuggetsy z kurczaka w panierce"], 
-            "allergens": ["gluten", "jaja"],
-            "type": ["zestaw_glowny", "kurczak"]
+            "id": "8",
+            "name": "McNuggets 4 sztuki",
+            "price": "9.90",
+            "imageUrl": "/pictures/mcnuggets_4.png",
+            "ingredients": [
+                "nuggetsy z kurczaka w panierce"
+            ],
+            "allergens": [
+                "gluten",
+                "jaja"
+            ],
+            "type": [
+                "zestaw_glowny",
+                "kurczak"
+            ]
         },
         {
-            "id": 9,
-            "name": "McNuggets 9 sztuk", 
-            "price": "15.90", 
-            "imageUrl": "/pictures/mcnuggets_9.png", 
-            "ingredients": ["nuggetsy z kurczaka w panierce"], 
-            "allergens": ["gluten", "jaja"],
-            "type": ["zestaw_glowny", "kurczak"]
+            "id": "9",
+            "name": "McNuggets 9 sztuk",
+            "price": "15.90",
+            "imageUrl": "/pictures/mcnuggets_9.png",
+            "ingredients": [
+                "nuggetsy z kurczaka w panierce"
+            ],
+            "allergens": [
+                "gluten",
+                "jaja"
+            ],
+            "type": [
+                "zestaw_glowny",
+                "kurczak"
+            ]
         },
         {
-            "id": 10,
-            "name": "McNuggets 20 sztuk", 
-            "price": "29.90", 
-            "imageUrl": "/pictures/mcnuggets_20.png", 
-            "ingredients": ["nuggetsy z kurczaka w panierce"], 
-            "allergens": ["gluten", "jaja"],
-            "type": ["zestaw_glowny", "kurczak"]
+            "id": "10",
+            "name": "McNuggets 20 sztuk",
+            "price": "29.90",
+            "imageUrl": "/pictures/mcnuggets_20.png",
+            "ingredients": [
+                "nuggetsy z kurczaka w panierce"
+            ],
+            "allergens": [
+                "gluten",
+                "jaja"
+            ],
+            "type": [
+                "zestaw_glowny",
+                "kurczak"
+            ]
         },
         {
-            "id": 11,
+            "id": "11",
             "name": "McWrap Classic",
             "price": "17.90",
-            "ingredients": ["kurczak panierowany", "sałata", "pomidor", "sos", "placek tortilli"],
-            "allergens": ["gluten", "mleko", "jaja", "musztarda"],
-            "type": ["zestaw_glowny", "wrapy i sałatki"],
+            "ingredients": [
+                "kurczak panierowany",
+                "sałata",
+                "pomidor",
+                "sos",
+                "placek tortilli"
+            ],
+            "allergens": [
+                "gluten",
+                "mleko",
+                "jaja",
+                "musztarda"
+            ],
+            "type": [
+                "zestaw_glowny",
+                "wrapy i sałatki",
+                "kurczak"
+            ],
             "imageUrl": "/pictures/mcwrap.png",
-            "dodatki": ["jalapeno", "boczek", "ser", "kurczak"]
+            "dodatki": [
+                "jalapeno",
+                "boczek",
+                "ser"
+            ]
         },
         {
-            "id": 12,
+            "id": "12",
             "name": "Sałatka z Kurczakiem",
             "price": "18.90",
-            "ingredients": ["mix sałat", "kurczak panierowany", "parmezan", "grzanki", "sos cezar", "pomidor"],
-            "allergens": ["gluten", "mleko", "ryby"],
-            "type": ["zestaw_glowny", "wrapy i sałatki", "kurczak"],
+            "ingredients": [
+                "mix sałat",
+                "kurczak panierowany",
+                "parmezan",
+                "grzanki",
+                "sos cezar",
+                "pomidor"
+            ],
+            "allergens": [
+                "gluten",
+                "mleko"
+            ],
+            "type": [
+                "zestaw_glowny",
+                "wrapy i sałatki",
+                "kurczak"
+            ],
             "imageUrl": "/pictures/salatka-kurczak.png"
         },
         {
-            "id": 13,
+            "id": "13",
             "name": "sos BBQ",
             "price": "2.50",
             "imageUrl": "/pictures/sos-bbq.png",
-            "allergens": ["musztarda", "jaja"],
-            "type": ["frytki i dodatki"]
+            "allergens": [
+                "musztarda",
+                "jaja"
+            ],
+            "type": [
+                "frytki i dodatki, sos"
+            ]
         },
         {
-            "id": 14,
+            "id": "14",
             "name": "sos czosnkowy",
             "price": "2.50",
             "imageUrl": "/pictures/sos-czosnkowy.png",
-            "allergens": ["musztarda", "jaja"],
-            "type": ["frytki i dodatki"]
+            "allergens": [
+                "musztarda",
+                "jaja"
+            ],
+            "type": [
+                "frytki i dodatki, sos"
+            ]
         },
         {
-            "id": 15,
+            "id": "15",
             "name": "sos słodko-kwaśny",
             "price": "2.50",
             "imageUrl": "/pictures/sos-slodko-kwasny.png",
-            "allergens": ["musztarda", "jaja"],
-            "type": ["frytki i dodatki"]
+            "allergens": [
+                "musztarda",
+                "jaja"
+            ],
+            "type": [
+                "frytki i dodatki, sos"
+            ]
         },
         {
-            "id": 16,
+            "id": "16",
             "name": "sos śmietankowy",
             "price": "2.50",
             "imageUrl": "/pictures/sos-smietankowy.png",
-            "allergens": ["musztarda", "jaja"],
-            "type": ["frytki i dodatki"]
+            "allergens": [
+                "musztarda",
+                "jaja"
+            ],
+            "type": [
+                "frytki i dodatki, sos"
+            ]
         },
         {
-            "id": 17,
+            "id": "17",
             "name": "keczup",
             "price": "2.50",
             "imageUrl": "/pictures/keczup.png",
-            "allergens": ["musztarda", "jaja"],
-            "type": ["frytki i dodatki"]
+            "allergens": [
+                "musztarda",
+                "jaja"
+            ],
+            "type": [
+                "frytki i dodatki, sos"
+            ]
         },
         {
-            "id": 18,
+            "id": "18",
             "name": "WieśMac",
             "price": "16.90",
-            "ingredients": ["kotlet wołowy", "ser cheddar", "pomidor", "sałata", "sos musztardowy", "bułka z sezamem"],
-            "allergens": ["gluten", "mleko", "jaja", "musztarda"],
-            "type": ["zestaw_glowny", "burgery"],
+            "ingredients": [
+                "kotlet wołowy",
+                "ser cheddar",
+                "pomidor",
+                "sałata",
+                "sos musztardowy",
+                "bułka z sezamem"
+            ],
+            "allergens": [
+                "gluten",
+                "mleko",
+                "jaja",
+                "musztarda"
+            ],
+            "type": [
+                "zestaw_glowny",
+                "burgery"
+            ],
             "imageUrl": "/pictures/wies-mac.png",
-            "dodatki": ["jalapeno", "boczek", "ser"]
+            "dodatki": [
+                "jalapeno",
+                "boczek",
+                "ser"
+            ]
         },
         {
-            "id": 19,
+            "id": "19",
             "name": "Hamburger",
             "price": "6.90",
-            "ingredients": ["kotlet wołowy", "ogórek konserwowy", "cebula", "ketchup", "musztarda", "bułka z sezamem"],
-            "allergens": ["gluten", "jaja", "musztarda"],
-            "type": ["2 for U", "burgery"],
+            "ingredients": [
+                "kotlet wołowy",
+                "ogórek konserwowy",
+                "cebula",
+                "ketchup",
+                "musztarda",
+                "bułka z sezamem"
+            ],
+            "allergens": [
+                "gluten",
+                "jaja",
+                "musztarda"
+            ],
+            "type": [
+                "2 for U",
+                "burgery"
+            ],
             "imageUrl": "/pictures/hamburger.png"
         },
         {
-            "id": 20,
+            "id": "20",
             "name": "Cheeseburger",
             "price": "6.90",
-            "ingredients": ["kotlet wołowy", "ser cheddar", "ogórek konserwowy", "cebula", "ketchup", "musztarda", "bułka z sezamem"],
-            "allergens": ["gluten", "mleko", "jaja", "musztarda"],
-            "type": ["2 for U", "burgery"],
+            "ingredients": [
+                "kotlet wołowy",
+                "ser cheddar",
+                "ogórek konserwowy",
+                "cebula",
+                "ketchup",
+                "musztarda",
+                "bułka z sezamem"
+            ],
+            "allergens": [
+                "gluten",
+                "mleko",
+                "jaja",
+                "musztarda"
+            ],
+            "type": [
+                "2 for U",
+                "burgery"
+            ],
             "imageUrl": "/pictures/cheeseburger.png"
         }
     ],
     "napoje": [
         {
+            "id": "21",
             "name": "Coca-cola",
-            "price": {
-                "maly": "5.90",
-                "sredni": "7.90",
-                "duzy": "9.90"
-            },
+            "price": [
+                {
+                    "name": "maly",
+                    "price": "5.90"
+                },
+                {
+                    "name": "sredni",
+                    "price": "7.90"
+                },
+                {
+                    "name": "duzy",
+                    "price": "9.90"
+                }
+            ],
             "imageUrl": "/pictures/kubek-picie.png"
         },
         {
+            "id": "22",
             "name": "Coca-cola Zero",
-            "price": {
-                "maly": "5.90",
-                "sredni": "7.90",
-                "duzy": "9.90"
-            },
+            "price": [
+                {
+                    "name": "maly",
+                    "price": "5.90"
+                },
+                {
+                    "name": "sredni",
+                    "price": "7.90"
+                },
+                {
+                    "name": "duzy",
+                    "price": "9.90"
+                }
+            ],
             "imageUrl": "/pictures/kubek-picie.png"
         },
         {
+            "id": "23",
             "name": "Sprite",
-            "price": {
-                "maly": "5.90",
-                "sredni": "7.90",
-                "duzy": "9.90"
-            },
+            "price": [
+                {
+                    "name": "maly",
+                    "price": "5.90"
+                },
+                {
+                    "name": "sredni",
+                    "price": "7.90"
+                },
+                {
+                    "name": "duzy",
+                    "price": "9.90"
+                }
+            ],
             "imageUrl": "/pictures/kubek-picie.png"
         },
         {
+            "id": "24",
             "name": "Fanta",
-            "price": {
-                "maly": "5.90",
-                "sredni": "7.90",
-                "duzy": "9.90"
-            },
+            "price": [
+                {
+                    "name": "maly",
+                    "price": "5.90"
+                },
+                {
+                    "name": "sredni",
+                    "price": "7.90"
+                },
+                {
+                    "name": "duzy",
+                    "price": "9.90"
+                }
+            ],
             "imageUrl": "/pictures/kubek-picie.png"
         },
         {
+            "id": "25",
             "name": "Lipton Cytrynowy",
-            "price": {
-                "maly": "5.90",
-                "sredni": "7.90",
-                "duzy": "9.90"
-            },
+            "price": [
+                {
+                    "name": "maly",
+                    "price": "5.90"
+                },
+                {
+                    "name": "sredni",
+                    "price": "7.90"
+                },
+                {
+                    "name": "duzy",
+                    "price": "9.90"
+                }
+            ],
             "imageUrl": "/pictures/kubek-picie.png"
         },
         {
+            "id": "26",
             "name": "Lipton Brzoskwiniowy",
-            "price": {
-                "maly": "5.90",
-                "sredni": "7.90",
-                "duzy": "9.90"
-            },
+            "price": [
+                {
+                    "name": "maly",
+                    "price": "5.90"
+                },
+                {
+                    "name": "sredni",
+                    "price": "7.90"
+                },
+                {
+                    "name": "duzy",
+                    "price": "9.90"
+                }
+            ],
             "imageUrl": "/pictures/kubek-picie.png"
         }
     ],
-    "types": ["burgery", "wrapy i sałatki", "zestaw", "2 for U", "frytki i dodatki", "napoje"],
-    "zestawy": {
-        "zwykly": {
+    "types": [
+        "burgery",
+        "kurczak",
+        "wrapy i sałatki",
+        "zestaw i 2 for you",
+        "2 for U",
+        "frytki i dodatki",
+        "napoje"
+    ],
+    "zestawy": [
+        {
+            "id": "27",
+            "name": "Zestaw zwykly",
             "price": "24.90",
-            "imageUrl": "/pictures/zestaw.png"
+            "imageUrl": "/pictures/zestaw.png",
+            "main": "zestaw_glowny",
+            "second": "Frytki średnie",
+            "drink": "sredni"
         },
-        "powiekszony": {
+        {
+            "id": "28",
+            "name": "Zestaw powiekszony",
             "price": "29.90",
-            "imageUrl": "/pictures/zestaw.png"
+            "imageUrl": "/pictures/zestaw.png",
+            "main": "zestaw_glowny",
+            "second": "Frytki duże",
+            "drink": "duzy"
         },
-        "2 for U": {
+        {
+            "id": "29",
+            "name": "2 for U",
             "price": "9.90",
-            "imageUrl": "/pictures/2_for_u.png"
+            "imageUrl": "/pictures/2_for_u.png",
+            "main": "2 for U",
+            "second": "Frytki małe",
+            "drink": "maly"
         }
-    }
+    ],
+    "ids": 29
 }

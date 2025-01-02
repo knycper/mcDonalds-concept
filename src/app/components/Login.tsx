@@ -17,34 +17,34 @@ export default function Login() {
   useEffect(() => {
     const user = localStorage.getItem('user')
     if (user) {
-        setRemember(true)
-        const usr = JSON.parse(user)
-        setEmail(usr.email)
-        setPassword(usr.password)
+      setRemember(true)
+      const usr = JSON.parse(user)
+      setEmail(usr.email)
+      setPassword(usr.password)
     }
   }, [])
 
   function toLocal() {
     if (remember) {
-        const userObject = {
-            email,
-            password
-        }
-        localStorage.setItem('user', JSON.stringify(userObject))
+      const userObject = {
+        email,
+        password
+      }
+      localStorage.setItem('user', JSON.stringify(userObject))
     } else {
-        const user = localStorage.getItem('user')
-        if (user) {
-            localStorage.removeItem('user')
-        }
+      const user = localStorage.getItem('user')
+      if (user) {
+        localStorage.removeItem('user')
+      }
     }
   }
 
   function tryToLogIn() {
-      const data = {
-        email,
-        password
-      }
-      axios.post('http://localhost:3001/check', data)
+    const data = {
+      email,
+      password
+    }
+    axios.post('http://localhost:3001/check', data)
       .then(res => {
         console.log(res.data.message)
         const { email, adress, phoneNumber } = res.data.user
@@ -112,16 +112,16 @@ export default function Login() {
           Zaloguj się
         </button>
         <div className="flex items-center mb-4">
-        <input
+          <input
             type="checkbox"
             checked={remember}
             onChange={() => setRemember(!remember)}
             id="remember"
             className="h-4 w-4 text-yellow-500 border-gray-300 rounded focus:ring-yellow-500"
-        />
-        <label htmlFor="remember" className="ml-2 text-sm text-gray-700">
+          />
+          <label htmlFor="remember" className="ml-2 text-sm text-gray-700">
             Zapamiętaj użytkownika
-        </label>
+          </label>
         </div>
         <div className="mt-4 text-center">
           <span className="text-sm text-gray-700">Nie masz konta? </span>

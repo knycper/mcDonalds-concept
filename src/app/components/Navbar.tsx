@@ -10,7 +10,7 @@ export default function Navbar() {
 
     return (
         <div className="bg-yellow-600 text-white p-4 shadow-md w-full">
-            <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center">
+            <div className="max-w-7xl mx-auto flex flex-shrink flex-wrap justify-between items-center space-x-2">
                 <div className="flex space-x-6">
                     <Link
                         href="/home"
@@ -19,7 +19,7 @@ export default function Navbar() {
                         Strona główna
                     </Link>
                     <Link
-                        href="/a_order"
+                        href="/home/order"
                         className="hover:text-yellow-300 transition"
                     >
                         Aktualne zamówienie
@@ -39,7 +39,7 @@ export default function Navbar() {
                 </div>
 
                 <div>
-                    <Link 
+                    <Link
                         href="/"
                         onClick={logOut}
                         className="hover:text-yellow-300 transition"
