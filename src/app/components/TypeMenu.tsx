@@ -1,16 +1,14 @@
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import useMenu from "./MenuContext";
-import { MenuData, Drink, Set, MenuItem } from "./types/types";
+import { Drink, MenuData, Set, MenuItem } from "./types/types";
 
-export default function TypeMenu({ type }) {
-    const obiekt: MenuData = useMenu()
-    const router = useRouter();
+import Image from "next/image";
+
+import useMenu from "./MenuContext";
+
+export default function TypeMenu({ type, setSelectedItemId }) {
+    const obiekt: MenuData = useMenu();
 
     if (!obiekt) {
-        return (
-            <div>Loading....</div>
-        )
+        return <div>Loading...</div>;
     }
 
     return (
@@ -22,7 +20,7 @@ export default function TypeMenu({ type }) {
                             <div
                                 key={ind}
                                 className="cursor-pointer bg-white p-4 rounded-lg shadow-md hover:scale-105 transition-transform flex flex-col items-center"
-                                onClick={() => router.push(`/home/${napoj.id}`)}
+                                onClick={() => setSelectedItemId(napoj.id)}
                             >
                                 <h3 className="text-lg font-semibold text-yellow-600 uppercase text-center">
                                     {napoj.name}
@@ -43,9 +41,10 @@ export default function TypeMenu({ type }) {
                         ))
                     ) : type === "zestaw i 2 for you" ? (
                         obiekt.zestawy.map((zestaw: Set, ind: number) => (
-                            <div key={ind}
+                            <div
+                                key={ind}
                                 className="cursor-pointer bg-white p-4 rounded-lg shadow-md hover:scale-105 transition-transform flex flex-col items-center"
-                                onClick={() => router.push(`/home/${zestaw.id}`)}
+                                onClick={() => setSelectedItemId(zestaw.id)}
                             >
                                 <h3 className="text-lg font-semibold text-yellow-600 uppercase text-center">
                                     {zestaw.name}
@@ -67,7 +66,7 @@ export default function TypeMenu({ type }) {
                                 <div
                                     key={ind}
                                     className="cursor-pointer bg-white p-4 rounded-lg shadow-md hover:scale-105 transition-transform flex flex-col items-center"
-                                    onClick={() => router.push(`/home/${obj.id}`)}
+                                    onClick={() => setSelectedItemId(obj.id)}
                                 >
                                     <h3 className="text-lg font-semibold text-yellow-600 uppercase text-center">
                                         {obj.name}

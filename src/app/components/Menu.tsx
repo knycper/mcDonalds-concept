@@ -1,16 +1,14 @@
 'use client';
 
-import TypeMenu from "./TypeMenu";
 import useMenu from "./MenuContext";
 import LoadingSuspense from "./LoadingSuspense";
-import { useState } from "react";
 
 interface MenuProps {
-    setChosen: React.Dispatch<React.SetStateAction<string>>;
+    handle: (chosen: string) => void;
+    chosen: string;
 }
 
-export default function Menu({ setChosen }: MenuProps) {
-    const [chosen, setChosenState] = useState<string>("");
+export default function Menu({ handle, chosen }: MenuProps) {
     const menuData = useMenu();
 
     if (!menuData) {
@@ -28,10 +26,7 @@ export default function Menu({ setChosen }: MenuProps) {
                     {menuData.types.map((type: string, index: number) => (
                         <div
                             key={index}
-                            onClick={() => {
-                                setChosen(type); // Aktualizuj stan w rodzicu
-                                setChosenState(type); // Aktualizuj lokalny stan w Menu
-                            }}
+                            onClick={() => handle(type)}
                             className={`cursor-pointer px-6 py-3 rounded-md text-center hover:bg-yellow-600 transition ${chosen === type ? "bg-yellow-600" : ""
                                 } uppercase`}
                         >

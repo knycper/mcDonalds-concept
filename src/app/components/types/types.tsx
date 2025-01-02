@@ -38,31 +38,49 @@ export type MenuData = {
 };
 
 export type NormalOrder = {
+    id?: string;
     name: string;
     price: string;
     add: string[];
     del: string[];
+    imageUrl: string;
 }
 
 export type DrinkOrder = {
+    id?: string;
     name: string;
     price: string;
     size: string;
+    imageUrl: string;
 }
 
 export type SetOrder = {
-    price: string;
-    main: NormalOrder;
-    second: string;
-    drink: DrinkOrder;
-}
-
-export type ForYouOrder = {
+    id: string;
     price: string;
     main: NormalOrder;
     second: {
         name: string;
+        imageUrl: string;
+    }
+    drink: DrinkOrder;
+}
+
+export type ForYouOrder = {
+    id: string;
+    price: string;
+    main: NormalOrder;
+    second: {
+        fries?: { name: string, price: string, imageUrl: string };
+        drink?: { name: string, size: string, price: string, imageUrl: string };
     };
+}
+
+export type SosOrder = {
+    id?: string;
+    name: string;
+    price: string;
+    imageUrl: string;
+
 }
 
 export type AllOrders = DrinkOrder | NormalOrder | SetOrder | ForYouOrder
