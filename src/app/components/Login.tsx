@@ -39,6 +39,13 @@ export default function Login() {
     }
   }
 
+  function checkOrder() {
+    const order = localStorage.getItem("order")
+    if (!order) {
+      localStorage.setItem("order", JSON.stringify([]))
+    }
+  }
+
   function tryToLogIn() {
     const data = {
       email,
@@ -56,6 +63,7 @@ export default function Login() {
           phoneNumber
         }
         localStorage.setItem('activeUser', JSON.stringify(activeUser))
+        checkOrder()
         router.push('/home')
         setError('')
         setLoginMessage("zalogowano pomyslnie")

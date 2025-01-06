@@ -38,20 +38,22 @@ export type MenuData = {
 };
 
 export type NormalOrder = {
-    id?: string;
+    id: string;
     name: string;
     price: string;
     add: string[];
     del: string[];
     imageUrl: string;
+    type: string;
 }
 
 export type DrinkOrder = {
-    id?: string;
+    id: string;
     name: string;
     price: string;
     size: string;
     imageUrl: string;
+    type: string;
 }
 
 export type SetOrder = {
@@ -63,6 +65,7 @@ export type SetOrder = {
         imageUrl: string;
     }
     drink: DrinkOrder;
+    type: string;
 }
 
 export type ForYouOrder = {
@@ -73,14 +76,15 @@ export type ForYouOrder = {
         fries?: { name: string, price: string, imageUrl: string };
         drink?: { name: string, size: string, price: string, imageUrl: string };
     };
+    type: string;
 }
 
 export type SosOrder = {
-    id?: string;
+    id: string;
     name: string;
     price: string;
     imageUrl: string;
-
+    type: string;
 }
 
 export type AllOrders = DrinkOrder | NormalOrder | SetOrder | ForYouOrder

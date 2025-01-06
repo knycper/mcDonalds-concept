@@ -6,7 +6,7 @@ interface HistoryNormalOrderProps {
     price: boolean
 }
 
-export default function HistoryNormalOrder({ order, price }: HistoryNormalOrderProps) {
+export default function Normal({ order, price }: HistoryNormalOrderProps) {
     return (
         <div>
             <div>{order.name}</div>

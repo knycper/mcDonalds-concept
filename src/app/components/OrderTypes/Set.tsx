@@ -7,7 +7,7 @@ interface HistorySetProps {
     setOrder: SetOrder;
 }
 
-export default function HistorySet({ setOrder }: HistorySetProps) {
+export default function Set({ setOrder }: HistorySetProps) {
     return (
         <div>
             <div>

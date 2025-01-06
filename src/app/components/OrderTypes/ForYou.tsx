@@ -6,7 +6,7 @@ interface HistoryForYouProps {
     forYouOrder: ForYouOrder;
 }
 
-export default function HistoryForYou({ forYouOrder }: HistoryForYouProps) {
+export default function ForYou({ forYouOrder }: HistoryForYouProps) {
     return (
         <div>
             <div>

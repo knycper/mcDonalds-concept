@@ -6,7 +6,7 @@ interface HistorySosProps {
     price: boolean;
 }
 
-export default function HistorySos({ sosOrder, price }: HistorySosProps) {
+export default function Sos({ sosOrder, price }: HistorySosProps) {
     return (
         <div>
             <div>{sosOrder.name}</div>

@@ -46,7 +46,7 @@ export default function SelectedItemDetails({ id, updateSite }: SelectedItemDeta
     return (
         <div className="flex justify-center items-center px-4">
             {drink && (
-                <DisplayDrink drink={drink} orderImported={order} updateSite={updateSite} />
+                <DisplayDrink drinkId={drink.id} orderImported={order} updateSite={updateSite} />
             )}
             {setItem && (
                 <div className="bg-white p-4 rounded shadow-md">
