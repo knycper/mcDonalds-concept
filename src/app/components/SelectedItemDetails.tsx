@@ -5,6 +5,7 @@ import useMenu from "./MenuContext";
 import LoadingSuspense from "./LoadingSuspense";
 import { MenuItem, MenuData, Drink, Set, AllOrders } from "./types/types";
 import DisplayDrink from "./DisplayType/DisplayDrink";
+import DisplayNormalItem from "./DisplayType/DisplayNormalItem";
 
 interface SelectedItemDetailsProps {
     id: string;
@@ -55,13 +56,7 @@ export default function SelectedItemDetails({ id, updateSite }: SelectedItemDeta
                 </div>
             )}
             {menuItem && (
-                <div className="bg-white p-4 rounded shadow-md">
-                    <h2 className="text-lg font-bold">{menuItem.name}</h2>
-                    <p className="text-gray-700">Cena: {menuItem.price} zł</p>
-                    <p className="text-gray-500">
-                        Typy: {menuItem.type.join(", ")}
-                    </p>
-                </div>
+                <DisplayNormalItem itemId={menuItem.id} orderImported={order} updateSite={updateSite} />
             )}
         </div>
     );

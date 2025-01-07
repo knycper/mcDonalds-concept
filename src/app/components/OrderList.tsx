@@ -6,15 +6,30 @@ import Normal from "@/app/components/OrderTypes/NormalOrder";
 import Sos from "@/app/components/OrderTypes/Sos";
 import { useState, useEffect } from "react";
 import DisplayDrink from "./DisplayType/DisplayDrink";
+import DisplayNormalItem from "./DisplayType/DisplayNormalItem";
+import Link from "next/link";
 
 export default function OrderList() {
     const [order, setOrder] = useState<AllOrders[]>([]);
-    const [showOrder, setShowOrder] = useState<boolean>(true);
     const [orderId, setOrderId] = useState<string>('');
+    const [orderPrice, setOrderPrice] = useState<string>('0')
 
     useEffect(() => {
         loadLocal();
     }, []);
+
+    useEffect(() => {
+        const price = order.reduce((sum, item) => {
+            return sum + (Number(item.price) || 0)
+        }, 0)
+
+        const str = String(price)
+        if (str.includes(".")) {
+            setOrderPrice(str + "0")
+        } else {
+            setOrderPrice(str)
+        }
+    }, [order])
 
     function loadLocal() {
         const get = localStorage.getItem('order');
@@ -24,7 +39,6 @@ export default function OrderList() {
     }
 
     const showEdit = (id: string) => {
-        setShowOrder(false);
         setOrderId(id);
     }
 
@@ -39,7 +53,7 @@ export default function OrderList() {
         if (val) {
             if (val.type === "NormalOrder") {
                 return (
-                    <div>Edytowanie zamówienia typu NormalOrder</div>
+                    <DisplayNormalItem orderImported={order} orderId={id} rerender={rerender} />
                 );
             } else if (val.type === "DrinkOrder") {
                 return (
@@ -69,7 +83,7 @@ export default function OrderList() {
             const normalOrder = value as NormalOrder;
             return (
                 <div key={ind} className="rounded-lg mb-4">
-                    <Normal order={normalOrder} price={true} />
+                    <Normal order={normalOrder} price={true} editFunc={showEdit} del={del} />
                 </div>
             );
         } else if (value.type === "DrinkOrder") {
@@ -109,22 +123,31 @@ export default function OrderList() {
     }
 
     return (
-        <div className=" min-w-min flex flex-row gap-6 bg-transparent">
-            {/* List of orders */}
-            <div className="w-full lg:w-1/2 h-[80vh] overflow-y-auto rtl p-4 rounded-lg">
-                {order.length !== 0 ? (
-                    order.map((value, ind) => renderOrder(value, ind))
-                ) : (
-                    <div className="text-center text-lg font-semibold text-yellow-600">Nie dodano jeszcze nic do zamówienia!</div>
+        <div className=" flex flex-col">
+            <div className="flex justify-center items-center gap-4 mb-4">
+                <div className="text-2xl font-bold text-yellow-600">
+                    Suma: {orderPrice} zł
+                </div>
+                <button className="bg-yellow-500 text-white py-2 px-6 rounded-md hover:bg-yellow-600 transition-transform transform hover:scale-105 shadow-md w-40">
+                    Zapłać
+                </button>
+            </div>
+            <div className="flex flex-row gap-6 bg-transparent mr-10">
+                {/* List of orders */}
+                <div className="lg:w-1/2 w-full h-[80vh] overflow-y-auto rtl p-4 rounded-lg flex-shrink-0">
+                    {order.length !== 0 ? (
+                        order.map((value, ind) => renderOrder(value, ind))
+                    ) : (
+                        <div className="text-center text-lg font-semibold text-yellow-600">Nie dodano jeszcze nic do zamówienia! Menu znajdziesz <Link href={"/home"} className="text-yellow-900 underline">tutaj</Link></div>
+                    )}
+                </div>
+                {/* Edit selected order */}
+                {orderId !== '' && (
+                    <div className="w-1/2 flex justify-center p-6 items-center">
+                        <DisplayEdit id={orderId} />
+                    </div>
                 )}
             </div>
-
-            {/* Edit selected order */}
-            {orderId !== '' && (
-                <div className="w-1/2 flex justify-center p-6 items-center">
-                    <DisplayEdit id={orderId} />
-                </div>
-            )}
         </div>
     );
 }

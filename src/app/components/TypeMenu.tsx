@@ -12,7 +12,7 @@ export default function TypeMenu({ type, setSelectedItemId }) {
     }
 
     return (
-        <div>
+        <div className="h-fit">
             {type && (
                 <div className="grid grid-cols-4 gap-6 overflow-y-auto p-4">
                     {type === "napoje" ? (
