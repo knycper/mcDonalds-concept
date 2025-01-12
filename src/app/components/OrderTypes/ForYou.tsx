@@ -1,5 +1,5 @@
 import { ForYouOrder } from "../types/types";
-import NormalOrderHist from "./NormalOrder";
+import NormalOrder from "./NormalOrder";
 import HistoryDrink from "./Drink"
 
 interface HistoryForYouProps {
@@ -10,13 +10,13 @@ export default function ForYou({ forYouOrder }: HistoryForYouProps) {
     return (
         <div>
             <div>
-                <NormalOrderHist order={forYouOrder.main} price={false} />
+                <NormalOrder order={forYouOrder.main} price={false} />
             </div>
             <div>
                 {forYouOrder.second.drink ? (
                     <HistoryDrink drinkOrder={forYouOrder.second.drink} price={false} />
                 ) : (
-                    <div></div>
+                    <NormalOrder order={forYouOrder.second.fries} price={false} />
                 )}
             </div>
             <div>{forYouOrder.price} zł</div>

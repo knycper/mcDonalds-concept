@@ -23,7 +23,7 @@ export type Drink = {
 export type Set = {
     id: string;
     name: string;
-    price: number;
+    price: string;
     imageUrl: string;
     main: string;
     second: string;
@@ -58,6 +58,7 @@ export type DrinkOrder = {
 
 export type SetOrder = {
     id: string;
+    name: string;
     price: string;
     main: NormalOrder;
     second: {
@@ -71,6 +72,7 @@ export type SetOrder = {
 export type ForYouOrder = {
     id: string;
     price: string;
+    name: string;
     main: NormalOrder;
     second: {
         fries?: { name: string, price: string, imageUrl: string };

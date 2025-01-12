@@ -158,9 +158,7 @@
             "name": "McNuggets 4 sztuki",
             "price": "9.90",
             "imageUrl": "/pictures/mcnuggets_4.png",
-            "ingredients": [
-                "nuggetsy z kurczaka w panierce"
-            ],
+            "ingredients": [],
             "allergens": [
                 "gluten",
                 "jaja"
@@ -175,9 +173,7 @@
             "name": "McNuggets 9 sztuk",
             "price": "15.90",
             "imageUrl": "/pictures/mcnuggets_9.png",
-            "ingredients": [
-                "nuggetsy z kurczaka w panierce"
-            ],
+            "ingredients": [],
             "allergens": [
                 "gluten",
                 "jaja"
@@ -192,9 +188,7 @@
             "name": "McNuggets 20 sztuk",
             "price": "29.90",
             "imageUrl": "/pictures/mcnuggets_20.png",
-            "ingredients": [
-                "nuggetsy z kurczaka w panierce"
-            ],
+            "ingredients": [],
             "allergens": [
                 "gluten",
                 "jaja"

@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Navbar() {
 
     function logOut() {
-        localStorage.removeItem('activeUser')
+        localStorage.removeItem('activeUser');
     }
 
     return (
@@ -20,7 +20,7 @@ export default function Navbar() {
                     </Link>
                     <Link
                         href="/home/order"
-                        className="hover:text-yellow-300 transition"
+                        className="hover:text-yellow-300 transition relative"
                     >
                         Aktualne zamówienie
                     </Link>

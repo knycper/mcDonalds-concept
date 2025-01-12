@@ -4,6 +4,8 @@ import Image from "next/image";
 import useMenu from "../MenuContext";
 import setId from "./functions/setId";
 import addToOrder from "./functions/addToOrder";
+import ModalError from "../OrderTypes/ModalError";
+import ModalSucces from "../OrderTypes/ModalSucces";
 
 interface DisplayNormalOrderProps {
     itemId?: string;
@@ -62,22 +64,19 @@ export default function DisplayNormalItem({ itemId, orderImported, updateSite, o
     }, [order]);
 
     useEffect(() => {
-        if (selected?.del.length === item?.ingredients?.length) {
-            setError("nie można usunąć wszystkich składników!")
-            const newDel = selected?.del.slice(0, -1)
-            if (newDel) {
-                setSelected(prev => {
-                    if (prev) {
-                        return {
-                            ...prev,
-                            del: newDel
-                        }
-                    }
-                    return prev
-                })
-            }
+        if (!item || !selected || !item.ingredients) return;
+
+        if (selected.del.length === item.ingredients.length) {
+            setError("nie można usunąć wszystkich składników!");
+            const newDel = selected.del.slice(0, -1);
+
+            setSelected(prev => ({
+                ...prev!,
+                del: newDel,
+            }));
         }
-    }, [item?.ingredients?.length, selected?.del])
+    }, [item, selected]);
+
 
     function toDel(obj: string) {
         if (selected) {
@@ -134,29 +133,35 @@ export default function DisplayNormalItem({ itemId, orderImported, updateSite, o
         if (selected) {
             const isAlreadyInAdd = selected.add.includes(obj);
 
-            // Obliczanie nowej ceny
-            const priceChange = "2.5";
-            const newPrice = isAlreadyInAdd
-                ? Number(selected.price.replace(/^0+/, '')) - Number(priceChange)
-                : Number(selected.price.replace(/^0+/, '')) + Number(priceChange);
+            // const priceChange = "2.5";
+            // const newPrice = isAlreadyInAdd
+            //     ? Number(selected.price.replace(/^0+/, '')) - Number(priceChange)
+            //     : Number(selected.price.replace(/^0+/, '')) + Number(priceChange);
 
-            console.log(newPrice)
-            console.log(selected.price, " - ", priceChange, " = ", newPrice)
+            // console.log(newPrice)
+            // console.log(selected.price, " - ", priceChange, " = ", newPrice)
 
-            // Aktualizacja listy dodatków
             const updatedAdd = isAlreadyInAdd
                 ? selected.add.filter(item => item !== obj)
                 : [...selected.add, obj];
 
-            const finalPrice = sprawdzKropke(String(newPrice))
-            console.log(finalPrice)
+            // const finalPrice = sprawdzKropke(String(newPrice))
+            // console.log(finalPrice)
 
             setSelected({
                 ...selected,
-                price: finalPrice,
+                // price: finalPrice,
                 add: updatedAdd,
             });
         }
+    }
+
+    function hideModalError() {
+        setError("")
+    }
+
+    function hideModalSucces() {
+        setAdded(false)
     }
 
     if (!item || !selected) {
@@ -164,7 +169,7 @@ export default function DisplayNormalItem({ itemId, orderImported, updateSite, o
     }
 
     return (
-        <div className="bg-yellow-100 text-yellow-800 p-6 rounded-md shadow-lg w-full max-w-3xl mx-auto overflow-y-auto">
+        <div className="bg-yellow-100 text-yellow-800 p-6 rounded-md shadow-lg w-full max-w-3xl mx-auto max-h-[80vh] overflow-y-auto">
             <div className="flex flex-row">
                 <div>
                     <div className="text-2xl font-bold mb-4">{item.name}</div>
@@ -193,7 +198,9 @@ export default function DisplayNormalItem({ itemId, orderImported, updateSite, o
             <div className="flex flex-col md:flex-row gap-6 mb-4">
                 {item.ingredients && (
                     <div className="flex-1">
-                        <div className="text-lg font-semibold mb-2">Składniki:</div>
+                        {item.ingredients.length !== 0 && (
+                            <div className="text-lg font-semibold mb-2">Składniki:</div>
+                        )}
                         {item.ingredients.map((ingrid, ind) => (
                             <div key={ind} className="flex items-center justify-between mb-2">
                                 {selected.del.includes(ingrid) ? (
@@ -203,8 +210,7 @@ export default function DisplayNormalItem({ itemId, orderImported, updateSite, o
                                 )}
                                 <button
                                     onClick={() => toDel(ingrid)}
-                                    className={`px-3 py-1 rounded-md font-medium transition-colors duration-300 hover:scale-105 ${selected.del.includes(ingrid) ? "bg-yellow-600 text-white" : "bg-yellow-200"
-                                        }`}
+                                    className={`px-3 py-1 rounded-md font-medium transition-colors duration-300 hover:scale-105 ${selected.del.includes(ingrid) ? "bg-yellow-600 text-white" : "bg-yellow-200"}`}
                                 >
                                     {selected.del.includes(ingrid) ? "Dodaj" : "Usuń"}
                                 </button>
@@ -239,15 +245,10 @@ export default function DisplayNormalItem({ itemId, orderImported, updateSite, o
                 Zatwierdź zmiany i dodaj
             </button>
             {added && (
-                <div className="mt-4 text-green-600 font-medium text-center">
-                    {orderId ? "Zaktualizowano Zamówienie!" : "Dodano zamówienie!"}
-                </div>
+                <ModalSucces message={"Dodano zamówienie!"} hideModal={hideModalSucces} />
             )}
             {error.length !== 0 && (
-                <div className="mt-4 text-red-600 font-medium text-center flex flex-row justify-center">
-                    <div className="">{error}</div>
-                    <button onClick={() => setError("")} className="underline ml-3">Zamknij</button>
-                </div>
+                <ModalError error={error} hideModal={hideModalError} />
             )}
         </div>
     );
