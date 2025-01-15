@@ -35,10 +35,6 @@ export default function Payment({ price, handleBack }: PaymentProps) {
         handleBack();
     };
 
-    function addTypeOfOrder(orderDet: string) {
-        return;
-    }
-
     function handleEnter(e: React.KeyboardEvent<HTMLInputElement>) {
         if (e.key === "Enter") {
             const inputValue = (e.target as HTMLInputElement).value;

@@ -36,6 +36,7 @@ router.post('/register', async (req, res) => {
 });
 
 router.post('/check', async (req, res) => {
+    console.log("jestem w check")
     try {
         const { email, password } = req.body
         const user = await User.findOne({ email })
@@ -50,12 +51,14 @@ router.post('/check', async (req, res) => {
 
         const { phoneNumber, adress } = user
 
-        return res.status(200).json({ message: "Zalogowano Pomyślnie", 
+        return res.status(200).json({
+            message: "Zalogowano Pomyślnie",
             user: {
                 email,
                 adress,
                 phoneNumber
-            } })
+            }
+        })
     } catch (error) {
         console.log(error)
         return res.status(500).json({ message: "Błąd serwera!" })
@@ -66,5 +69,38 @@ router.get('/file', (req, res) => {
     const data = readMenu()
     return res.status(200).json({ message: data })
 })
+
+router.put('/update', async (req, res) => {
+    try {
+        const { mailToCheck, email, password, adress, phoneNumber } = req.body;
+        const user = await User.findOne({ email: mailToCheck });
+        if (!user) return res.status(404).json({ message: "Wystąpił błąd. Spróbuj ponownie!" });
+
+        if (email) {
+            const check = await User.findOne({ email })
+            if (check) {
+                return res.status(404).json({ message: "Konto z podanym emailem już istnieje!" })
+            } else {
+                user.email = email
+            }
+        }
+        if (password) {
+            const salt = await bcrypt.genSalt(10);
+            user.password = await bcrypt.hash(password, salt);
+        }
+        if (adress) user.adress = adress
+        if (phoneNumber) user.phoneNumber = phoneNumber
+
+        await user.save()
+
+        res.status(200).json({ message: "Dane Zaktualizowano pomyślnie!", user })
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ message: "Błąd serwera. Spróbuj później" })
+    }
+})
+
+
 
 export default router;

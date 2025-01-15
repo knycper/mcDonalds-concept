@@ -1,12 +1,13 @@
 import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
-    id: {type: String, required: true, unique: true},
+    id: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    adress: {type: String},
-    phoneNumber: {type: String},
-    history: {type: Array}
+    adress: { type: String },
+    phoneNumber: { type: String },
+    history: { type: Array },
+    orderInProgres: { type: Boolean, default: false }
 });
 
 const User = mongoose.model('User', userSchema);

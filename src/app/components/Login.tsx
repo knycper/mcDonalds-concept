@@ -69,7 +69,9 @@ export default function Login() {
         setLoginMessage("zalogowano pomyslnie")
       })
       .catch(error => {
-        setError(error.response.data.message)
+        const message = error.response?.data?.message || "Błąd połączenia z serwerem";
+        console.log(message);
+        setError(message);
       })
   }
 

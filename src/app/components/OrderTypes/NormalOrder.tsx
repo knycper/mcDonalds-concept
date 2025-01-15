@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { NormalOrder } from "../types/types";
-import Modal from "./Modal1";
+import Modal from "../modals/Modal1";
 import { useState } from "react";
 
 interface HistoryNormalOrderProps {

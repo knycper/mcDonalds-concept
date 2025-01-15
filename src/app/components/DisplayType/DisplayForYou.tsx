@@ -4,8 +4,8 @@ import Image from "next/image";
 import useMenu from "../MenuContext";
 import setId from "./functions/setId";
 import addToOrder from "./functions/addToOrder";
-import ModalError from "../OrderTypes/ModalError";
-import ModalSucces from "../OrderTypes/ModalSucces";
+import ModalError from "../modals/ModalError";
+import ModalSucces from "../modals/ModalSucces";
 
 interface DisplayForYouOrderProps {
     itemId?: string;

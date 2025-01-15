@@ -22,16 +22,22 @@ export default function Navbar() {
                         href="/home/order"
                         className="hover:text-yellow-300 transition relative"
                     >
-                        Aktualne zamówienie
+                        Koszyk
                     </Link>
                     <Link
-                        href="/home/konto/info"
+                        href="/home/order/info"
                         className="hover:text-yellow-300 transition"
                     >
-                        Informacje konta
+                        Stan zamówienia
                     </Link>
                     <Link
-                        href="/home/konto/historia"
+                        href="/home/account"
+                        className="hover:text-yellow-300 transition"
+                    >
+                        Konto
+                    </Link>
+                    <Link
+                        href="/home/account/history"
                         className="hover:text-yellow-300 transition"
                     >
                         Historia zamówień

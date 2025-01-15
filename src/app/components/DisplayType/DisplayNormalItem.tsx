@@ -4,8 +4,8 @@ import Image from "next/image";
 import useMenu from "../MenuContext";
 import setId from "./functions/setId";
 import addToOrder from "./functions/addToOrder";
-import ModalError from "../OrderTypes/ModalError";
-import ModalSucces from "../OrderTypes/ModalSucces";
+import ModalError from "../modals/ModalError";
+import ModalSucces from "../modals/ModalSucces";
 
 interface DisplayNormalOrderProps {
     itemId?: string;
@@ -66,7 +66,7 @@ export default function DisplayNormalItem({ itemId, orderImported, updateSite, o
     useEffect(() => {
         if (!item || !selected || !item.ingredients) return;
 
-        if (selected.del.length === item.ingredients.length) {
+        if (item.ingredients.length !== 0 && selected.del.length === item.ingredients.length) {
             setError("nie można usunąć wszystkich składników!");
             const newDel = selected.del.slice(0, -1);
 

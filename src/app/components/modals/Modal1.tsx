@@ -3,7 +3,7 @@ export default function Modal({ onClose, onConfirm }: { onClose: () => void; onC
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
             <div className="bg-white p-6 rounded-lg shadow-lg w-80">
                 <div className="text-xl text-center mb-4 font-semibold text-gray-700">
-                    Czy na pewno chcesz usunąć ten napój?
+                    Czy na pewno chcesz usunąć ten produkt?
                 </div>
                 <div className="flex justify-between">
                     <button

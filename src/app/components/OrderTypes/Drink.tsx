@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { DrinkOrder } from "../types/types";
 import { useState } from "react";
-import Modal from "./Modal1";
+import Modal from "../modals/Modal1";
 
 interface DrinkProps {
     drinkOrder: DrinkOrder;
