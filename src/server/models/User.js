@@ -7,7 +7,8 @@ const userSchema = new mongoose.Schema({
     adress: { type: String },
     phoneNumber: { type: String },
     history: { type: Array },
-    orderInProgres: { type: Boolean, default: false }
+    orderInProgres: { type: Boolean, default: false },
+    orderStatus: { type: String, default: "None" }
 });
 
 const User = mongoose.model('User', userSchema);

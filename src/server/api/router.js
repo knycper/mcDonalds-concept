@@ -101,6 +101,30 @@ router.put('/update', async (req, res) => {
     }
 })
 
+router.delete("/delete", async (req, res) => {
+    try {
+        console.log("dostałem delete")
+        const { email, password } = req.body
+        const user = await User.findOne({ email })
+        if (!user) return res.status(404).json({ message: "Spróbuj zalogować się ponownie aby usunąć konto" })
+
+        const isPasswordOkay = await bcrypt.compare(password, user.password)
+
+        if (!isPasswordOkay) return res.status(401).json({ message: "Podane hasło jest nie prawidłowe" })
+
+        const result = await User.deleteOne({ email })
+
+        if (result.deletedCount === 1) {
+            return res.status(200).json({ message: "Pomyślnie usunięto konto" })
+        } else {
+            return res.status(500).json({ message: "Wystąpił problem podczas usuwania konta. Spróbuj ponownie później" })
+        }
+    } catch (error) {
+        console.log("Błąd przy usuwaniu konta: ", error)
+        return res.status(500).json({ message: "Wystąpił błąd serwera" })
+    }
+})
+
 
 
 export default router;
