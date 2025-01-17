@@ -63,6 +63,18 @@ export default function Login() {
           phoneNumber
         }
         localStorage.setItem('activeUser', JSON.stringify(activeUser))
+        axios.get(`http://localhost:3001/orders/order?email=${email}`)
+          .then(res => {
+            console.log("dziala")
+            const { order } = res.data
+            console.log(order)
+            localStorage.setItem("order", JSON.stringify(order))
+          })
+          .catch(error => {
+            const message = error.response?.data?.message || "Błąd połączenia z serwerem";
+            console.log(message);
+            setError(message)
+          })
         checkOrder()
         router.push('/home')
         setError('')

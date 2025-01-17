@@ -1,11 +1,20 @@
 'use client';
 
 import Link from "next/link";
+import ModalAsking from "./modals/ModalAsking";
+import { useState } from "react";
+import { useRouter } from 'next/navigation';
 
 export default function Navbar() {
+    const [modal, setModal] = useState<boolean>(false);
+
+    const router = useRouter();
 
     function logOut() {
         localStorage.removeItem('activeUser');
+        localStorage.removeItem('order')
+        router.push("/")
+        setModal(false)
     }
 
     return (
@@ -36,24 +45,20 @@ export default function Navbar() {
                     >
                         Konto
                     </Link>
-                    <Link
-                        href="/home/account/history"
-                        className="hover:text-yellow-300 transition"
-                    >
-                        Historia zamówień
-                    </Link>
                 </div>
 
                 <div>
-                    <Link
-                        href="/"
-                        onClick={logOut}
+                    <button
+                        onClick={() => setModal(true)}
                         className="hover:text-yellow-300 transition"
                     >
                         Wyloguj się
-                    </Link>
+                    </button>
                 </div>
             </div>
+            {modal && (
+                <ModalAsking onClose={() => setModal(false)} onConfirm={logOut} message="logOut" />
+            )}
         </div>
     );
 }

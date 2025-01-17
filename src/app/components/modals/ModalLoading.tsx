@@ -1,4 +1,4 @@
-export default function ModalLoading({ info, close }: { info: string, close: () => void }) {
+export default function ModalLoading({ info, close }: { info?: string, close: () => void }) {
     return (
         <div className="absolute inset-0 bg-white bg-opacity-90 flex flex-col items-center justify-center z-10">
             <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-yellow-500 border-b-4 mb-6"></div>

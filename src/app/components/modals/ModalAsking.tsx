@@ -3,7 +3,7 @@ export default function ModalAsking({ onClose, onConfirm, message }: { onClose: 
     function Base({ info }: { info: string }) {
         return (
             <div>
-                <div className="text-lg font-semibold mb-4">{info}</div>
+                <div className="text-lg text-black font-semibold mb-4">{info}</div>
                 <div className="flex justify-end space-x-4">
                     <button
                         onClick={() => onConfirm(message)}

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Drink, AllOrders, DrinkOrder, MenuData } from "../types/types";
 import Image from "next/image";
 import useMenu from "../MenuContext";
+import axios from "axios";
 
 interface DisplayDrinkProps {
     drinkId?: string;
@@ -23,6 +24,7 @@ export default function DisplayDrink({
     const [added, setAdded] = useState<boolean>(false);
     const [error, setError] = useState<string>("");
     const [drink, SetDrink] = useState<Drink | null>(null);
+    const [email, setEmail] = useState<string>("")
     const menu = useMenu() as MenuData | null;
 
     useEffect(() => {
@@ -46,6 +48,15 @@ export default function DisplayDrink({
     }, [drinkId, menu, orderId, order]);
 
     useEffect(() => {
+        const storage = localStorage.getItem("activeUser")
+        if (storage) {
+            const objs = JSON.parse(storage)
+            const final = objs.email
+            setEmail(final)
+        }
+    }, [])
+
+    useEffect(() => {
         setOrder(orderImported);
     }, [orderImported, orderId]);
 
@@ -57,6 +68,7 @@ export default function DisplayDrink({
 
     function setId() {
         if (order.length === 0) {
+
             return "1";
         } else {
             const lastId = order[order.length - 1].id;
@@ -74,40 +86,74 @@ export default function DisplayDrink({
             price,
             size,
             imageUrl: drink.imageUrl,
-            type: "DrinkOrder",
+            type: "DrinkOrder"
         });
+    }
+
+    function confirmed() {
+        setError("");
+        setAdded(true);
+        setTimeout(() => {
+            if (orderId) {
+                if (rerender) {
+                    rerender();
+                }
+            } else {
+                if (updateSite) {
+                    updateSite();
+                }
+            }
+        }, 1000);
     }
 
     function handleAddToOrder() {
         if (selected) {
             if (orderId) {
-                const newOrder = order.map((obj) => {
-                    if (obj.id === orderId && selected) {
-                        return {
-                            ...obj,
-                            price: selected.price,
-                            size: selected.size,
-                        };
-                    }
-                    return obj;
-                });
-                setOrder(newOrder);
-            } else {
-                setOrder((prev) => [...prev, selected]);
-            }
-            setError("");
-            setAdded(true);
-            setTimeout(() => {
-                if (orderId) {
-                    if (rerender) {
-                        rerender();
-                    }
-                } else {
-                    if (updateSite) {
-                        updateSite();
-                    }
+                const sel = ({
+                    ...selected,
+                    id: orderId
+                })
+                const data = {
+                    orderId,
+                    email: email,
+                    updated: sel
                 }
-            }, 1000);
+                axios.put('http://localhost:3001/orders/updateOrder', data)
+                    .then(() => {
+                        const newOrder = order.map((obj) => {
+                            if (obj.id === orderId && selected) {
+                                return {
+                                    ...obj,
+                                    price: selected.price,
+                                    size: selected.size,
+                                };
+                            }
+                            return obj;
+                        });
+                        setOrder(newOrder);
+                        confirmed()
+                    })
+                    .catch(error => {
+                        const message = error.response?.data?.message || "Błąd połączenia z serwerem";
+                        console.log(message);
+                        setError(message);
+                    })
+            } else {
+                const data = {
+                    email,
+                    order: selected
+                }
+                axios.post('http://localhost:3001/orders/add', data)
+                    .then(() => {
+                        setOrder((prev) => [...prev, selected]);
+                        confirmed()
+                    })
+                    .catch(error => {
+                        const message = error.response?.data?.message || "Błąd połączenia z serwerem";
+                        console.log(message);
+                        setError(message);
+                    })
+            }
         } else {
             setError(
                 "Nie wybrano jeszcze wielkości napoju. Naciśnij na wybrany rozmiar, a następnie zatwierdź!"

@@ -6,6 +6,8 @@ import setId from "./functions/setId";
 import addToOrder from "./functions/addToOrder";
 import ModalError from "../modals/ModalError";
 import ModalSucces from "../modals/ModalSucces";
+import axios from "axios";
+import ModalLoading from "../modals/ModalLoading";
 
 interface DisplayNormalOrderProps {
     itemId?: string;
@@ -23,7 +25,18 @@ export default function DisplayNormalItem({ itemId, orderImported, updateSite, o
     const [item, SetItem] = useState<MenuItem | null>(null);
     const [allerg, setAllerg] = useState<boolean>(false);
     const [error, setError] = useState<string>("")
+    const [email, setEmail] = useState<string>("")
+    const [loading, setLoading] = useState<boolean>(false)
     const menu = useMenu() as MenuData | null;
+
+    useEffect(() => {
+        const local = localStorage.getItem("activeUser")
+        if (local) {
+            const final = JSON.parse(local)
+            const mail = final.email
+            setEmail(mail)
+        }
+    }, [])
 
     useEffect(() => {
         if (menu) {
@@ -89,43 +102,68 @@ export default function DisplayNormalItem({ itemId, orderImported, updateSite, o
                 ...selected,
                 del: updatedDel,
             });
-            console.log(selected.del)
         }
+    }
+
+    function confirm() {
+        setAdded(true);
+        setTimeout(() => {
+            if (orderId) {
+                if (rerender) {
+                    rerender();
+                }
+            } else {
+                if (updateSite) {
+                    updateSite();
+                }
+            }
+        }, 1000);
     }
 
     function handleAddToOrder() {
         if (selected) {
             if (orderId) {
-                const newOrder = order.map((obj) => {
-                    if (obj.id === orderId && selected) {
-                        return selected;
-                    }
-                    return obj;
-                });
-                setOrder(newOrder);
-            } else {
-                setOrder((prev) => [...prev, selected]);
-            }
-            setAdded(true);
-            setTimeout(() => {
-                if (orderId) {
-                    if (rerender) {
-                        rerender();
-                    }
-                } else {
-                    if (updateSite) {
-                        updateSite();
-                    }
+                const data = {
+                    orderId,
+                    email
                 }
-            }, 1000);
-        }
-    }
+                setLoading(true)
+                axios.put('http://localhost:3001/orders/updateOrder', data)
+                    .then(() => {
+                        const newOrder = order.map((obj) => {
+                            if (obj.id === orderId && selected) {
+                                return selected;
+                            }
+                            return obj;
+                        });
+                        setOrder(newOrder);
+                        confirm()
+                        setLoading(false)
+                    })
+                    .catch(error => {
+                        const message = error.response?.data?.message || "Błąd połączenia z serwerem";
+                        setError(message);
+                        setLoading(false)
+                    })
+            } else {
+                const data = {
+                    email,
+                    order: selected
+                }
+                setLoading(true)
+                axios.post('http://localhost:3001/orders/add', data)
+                    .then(() => {
+                        setOrder((prev) => [...prev, selected]);
+                        confirm();
+                        setLoading(false);
+                    })
+                    .catch(error => {
+                        const message = error.response?.data?.message || "Błąd połączenia z serwerem";
+                        setError(message);
+                        setLoading(false);
+                    })
+            }
 
-    function sprawdzKropke(cena: string): string {
-        if (cena.includes(".")) {
-            return cena + "0"
-        } else {
-            return cena
         }
     }
 
@@ -249,6 +287,9 @@ export default function DisplayNormalItem({ itemId, orderImported, updateSite, o
             )}
             {error.length !== 0 && (
                 <ModalError error={error} hideModal={hideModalError} />
+            )}
+            {loading && (
+                <ModalLoading close={() => setLoading(false)} />
             )}
         </div>
     );

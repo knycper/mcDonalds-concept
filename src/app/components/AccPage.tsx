@@ -66,7 +66,7 @@ export default function AccPage() {
             {showData ? (
                 <div className="w-full">
                     <div className="flex items-center justify-center mt-4">
-                        <LeftAccPage logOut={logOut} accData={showAccData} />
+                        <LeftAccPage logOut={logOut} accData={showAccData} deleteAcc={() => setRemoveAcc(true)} />
                     </div>
                     <div className="flex items-center justify-center">
                         {showData && (

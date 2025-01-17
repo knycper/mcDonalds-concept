@@ -4,7 +4,7 @@ interface RootLayoutProps {
     children: React.ReactNode;
 }
 
-export default function HomeLayout({ children }: RootLayoutProps): JSX.Element {
+export default function OrderLayout({ children }: RootLayoutProps): JSX.Element {
     return (
         <div>
             {children}

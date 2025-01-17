@@ -24,7 +24,8 @@ router.post('/register', async (req, res) => {
             password: hashedPassword,
             adress,
             phoneNumber,
-            history: []
+            history: [],
+            order: []
         });
 
         await newUser.save();
@@ -36,7 +37,6 @@ router.post('/register', async (req, res) => {
 });
 
 router.post('/check', async (req, res) => {
-    console.log("jestem w check")
     try {
         const { email, password } = req.body
         const user = await User.findOne({ email })
@@ -103,7 +103,6 @@ router.put('/update', async (req, res) => {
 
 router.delete("/delete", async (req, res) => {
     try {
-        console.log("dostałem delete")
         const { email, password } = req.body
         const user = await User.findOne({ email })
         if (!user) return res.status(404).json({ message: "Spróbuj zalogować się ponownie aby usunąć konto" })
@@ -124,6 +123,8 @@ router.delete("/delete", async (req, res) => {
         return res.status(500).json({ message: "Wystąpił błąd serwera" })
     }
 })
+
+
 
 
 

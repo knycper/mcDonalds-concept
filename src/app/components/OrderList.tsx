@@ -9,34 +9,51 @@ import DisplayDrink from "./DisplayType/DisplayDrink";
 import DisplayNormalItem from "./DisplayType/DisplayNormalItem";
 import Link from "next/link";
 import Payment from "./Payment";
+import axios from "axios";
 
 export default function OrderList() {
     const [order, setOrder] = useState<AllOrders[]>([]);
     const [orderId, setOrderId] = useState<string>('');
     const [orderPrice, setOrderPrice] = useState<string>('0')
     const [showPayment, setShowPayment] = useState<boolean>(false)
+    const [email, setEmail] = useState<string>("")
 
     useEffect(() => {
+        console.log("odpalam funkcje loadLoacal")
         loadLocal();
     }, []);
 
     useEffect(() => {
-        const price = order.reduce((sum, item) => {
-            return sum + (Number(item.price) || 0)
-        }, 0)
-        const str = String(price)
-        if (str.length > 7) {
-            const roundedPrice = String(Math.round(price * 100) / 100);
-            if (roundedPrice.includes(".")) {
-                setOrderPrice(roundedPrice + "0")
+        const local = localStorage.getItem("activeUser")
+        if (local) {
+            const obj = JSON.parse(local)
+            setEmail(obj.email)
+        }
+    }, [])
+
+    useEffect(() => {
+        console.log(email, "email z local")
+    }, [email])
+
+    useEffect(() => {
+        if (order) {
+            const price = order.reduce((sum, item) => {
+                return sum + (Number(item.price) || 0)
+            }, 0)
+            const str = String(price)
+            if (str.length > 7) {
+                const roundedPrice = String(Math.round(price * 100) / 100);
+                if (roundedPrice.includes(".")) {
+                    setOrderPrice(roundedPrice + "0")
+                } else {
+                    setOrderPrice(roundedPrice)
+                }
             } else {
-                setOrderPrice(roundedPrice)
-            }
-        } else {
-            if (str.includes(".")) {
-                setOrderPrice(str + "0")
-            } else {
-                setOrderPrice(str)
+                if (str.includes(".")) {
+                    setOrderPrice(str + "0")
+                } else {
+                    setOrderPrice(str)
+                }
             }
         }
     }, [order])
@@ -53,9 +70,23 @@ export default function OrderList() {
     }
 
     function del(id: string) {
-        const newOrder = order.filter(obj => obj.id !== id);
-        localStorage.setItem("order", JSON.stringify(newOrder));
-        loadLocal();
+        if (orderId === id) {
+            setOrderId("")
+        }
+        const data = {
+            email,
+            id
+        }
+        axios.delete('http://localhost:3001/orders/deleteOrder', { data })
+            .then(() => {
+                const newOrder = order.filter(obj => obj.id !== id);
+                localStorage.setItem("order", JSON.stringify(newOrder));
+                loadLocal();
+            })
+            .catch(error => {
+                const message = error.response?.data?.message || "Błąd połączenia z serwerem";
+                console.log(message);
+            })
     }
 
     function DisplayEdit({ id }: { id: string }) {
@@ -133,6 +164,12 @@ export default function OrderList() {
 
     function cancelPayment() {
         setShowPayment(false)
+    }
+
+    if (!order || !email) {
+        return (
+            <div>Loading</div>
+        )
     }
 
     return (
