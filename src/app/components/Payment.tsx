@@ -1,11 +1,14 @@
 import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
 
 interface PaymentProps {
     price: string;
     handleBack: () => void;
+    orderSet: () => void;
 }
 
-export default function Payment({ price, handleBack }: PaymentProps) {
+export default function Payment({ price, handleBack, orderSet }: PaymentProps) {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [info, setInfo] = useState<string>("");
     const [orderType, setOrderType] = useState<string>("")
@@ -15,19 +18,55 @@ export default function Payment({ price, handleBack }: PaymentProps) {
     const [error, setError] = useState<string>("")
     const [delAdress, setDelAdress] = useState<string>("")
     const [phoneNr, setPhoneNr] = useState<string>("")
+    const [email, setEmail] = useState<string>("")
 
-    const handlePayment = () => {
+    useEffect(() => {
+        const local = localStorage.getItem("activeUser")
+        if (local) {
+            const parse = JSON.parse(local)
+            setEmail(parse.email)
+        }
+    }, [])
+
+    const handlePayment = async () => {
         setInfo("Przetwarzanie transakcji...");
         setIsLoading(true);
-        setTimeout(() => {
+
+        try {
+            await new Promise(resolve => setTimeout(resolve, 3000));
+
             setInfo("Płatność zakończona sukcesem!");
-            setTimeout(() => {
+
+            try {
+                await axios.post('http://localhost:3001/orders/publishedOrder', { email, orderDetails, orderType });
+
+                setInfo("Status zamówienia zaktualizowano pomyślnie! Sprawdź go w zakładce 'Stan zamówienia'");
+
+                setTimeout(() => {
+                    setIsLoading(false);
+                    setInfo("");
+                    localStorage.setItem("order", JSON.stringify([]))
+                    orderSet()
+                    closeModal();
+                }, 1000);
+            } catch (error) {
+                const message = error.response?.data?.message || "Błąd połączenia z serwerem";
+                console.log(message);
+                setError(message);
                 setIsLoading(false);
                 setInfo("");
                 closeModal();
-            }, 1000);
-        }, 3000);
+            }
+
+        } catch (error) {
+            console.log(error);
+            setError("Błąd przetwarzania płatności, spróbuj ponownie");
+            setIsLoading(false);
+            setInfo("");
+            closeModal();
+        }
     };
+
 
     const closeModal = () => {
         setIsLoading(false);
@@ -335,9 +374,13 @@ export default function Payment({ price, handleBack }: PaymentProps) {
                         {isLoading && (
                             <div className="absolute inset-0 bg-white bg-opacity-90 flex flex-col items-center justify-center z-10">
                                 <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-yellow-500 mb-4"></div>
-                                <div className="text-lg font-semibold text-yellow-800">{info}</div>
+                                <div className="text-lg font-semibold text-yellow-800 text-center break-words">
+                                    {info}
+                                </div>
                             </div>
                         )}
+
+
                     </div>
 
                 )}
@@ -345,3 +388,7 @@ export default function Payment({ price, handleBack }: PaymentProps) {
         </>
     );
 }
+function then(arg0: (res: any) => void) {
+    throw new Error("Function not implemented.");
+}
+

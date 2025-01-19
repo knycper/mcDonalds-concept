@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const uri = "mongodb+srv://kacperlukowicz:Lechia2004@cluster0.hnedr.mongodb.net/protokoly?retryWrites=true&w=majority";  // Upewnij się, że masz poprawny URI
+const uri = "mongodb+srv://kacperlukowicz:Lechia2004@cluster0.hnedr.mongodb.net/protokoly?retryWrites=true&w=majority";
 
 export default async function connectDB() {
     try {
@@ -11,3 +11,5 @@ export default async function connectDB() {
         process.exit(1);
     }
 }
+
+connectDB()

@@ -1,21 +1,10 @@
 import express from 'express';
 import cors from 'cors';
-import connectDB from '../database.js';
 import userRoutes from './userRouter.js';
 import orderRoutes from './orderRouter.js';
 
 const app = express();
 const port = 3001;
-
-(async () => {
-    try {
-        await connectDB();
-        console.log("Połączono z bazą danych");
-    } catch (error) {
-        console.error("Nie można połączyć się z bazą danych:", error.message);
-        process.exit(1);
-    }
-})();
 
 app.use(express.json());
 

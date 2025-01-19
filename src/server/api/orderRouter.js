@@ -1,5 +1,6 @@
 import express from 'express';
 import User from '../models/User.js';
+import sendOrder from '../mqtt/usersMQTT/mqttPublishOrder.js';
 
 const router = express.Router();
 
@@ -31,7 +32,13 @@ router.put('/updateOrder', async (req, res) => {
 
         const orderToUpdate = user.order.find(order => order.id === orderId);
 
+        console.log("Wysłane: ", updated)
+
+        console.log("Przed zaktualizowaniem: ", orderToUpdate)
+
         Object.assign(orderToUpdate, updated);
+
+        console.log("Po aktualizacji: ", user.order.find(order => order.id === orderId))
 
         await user.save();
 
@@ -67,10 +74,7 @@ router.delete('/deleteOrder', async (req, res) => {
 
 router.get('/order', async (req, res) => {
     try {
-        console.log("jest zapytanie")
         const { email } = req.query
-
-        console.log("email", email, "to jest email")
 
         const user = await User.findOne({ email })
 
@@ -86,5 +90,45 @@ router.get('/order', async (req, res) => {
     }
 })
 
+router.post('/publishedOrder', async (req, res) => {
+    try {
+        console.log("dostalem publish order")
+        const { email, orderType, orderDetails } = req.body
+        const user = await User.findOne({ email })
+
+        if (!user) return res.status(404).json({ message: "Wystąpił błąd. Spróbuj ponownie" })
+
+        const order = user.order
+
+        const orderData = {
+            order,
+            orderType,
+            orderDetails,
+            email
+        }
+
+        sendOrder(orderData, async (succes, info) => {
+            if (succes) {
+                console.log("wyslano do mqtt")
+
+                user.history.push(order)
+
+                user.orderStatus = "In progress"
+
+                user.order = []
+
+                await user.save()
+
+                return res.status(200).json({ message: "Wysłano zamówienie!" })
+            } else {
+                console.log("blad: ", info)
+                return res.status(404).json({ message: "Wystąpił błąd w wysyłaniu mqtt" })
+            }
+        })
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message: "Błąd serwera!" });
+    }
+})
 
 export default router;

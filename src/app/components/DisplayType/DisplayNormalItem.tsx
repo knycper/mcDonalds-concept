@@ -125,7 +125,8 @@ export default function DisplayNormalItem({ itemId, orderImported, updateSite, o
             if (orderId) {
                 const data = {
                     orderId,
-                    email
+                    email,
+                    updated: selected
                 }
                 setLoading(true)
                 axios.put('http://localhost:3001/orders/updateOrder', data)

@@ -20,7 +20,6 @@ const userSchema = new mongoose.Schema({
     phoneNumber: { type: String },
     history: { type: Array },
     order: { type: [orderSchema] },
-    orderInProgres: { type: Boolean, default: false },
     orderStatus: { type: String, default: "None" }
 });
 
