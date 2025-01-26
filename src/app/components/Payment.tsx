@@ -388,7 +388,4 @@ export default function Payment({ price, handleBack, orderSet }: PaymentProps) {
         </>
     );
 }
-function then(arg0: (res: any) => void) {
-    throw new Error("Function not implemented.");
-}
 

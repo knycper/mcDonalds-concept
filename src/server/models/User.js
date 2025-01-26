@@ -12,6 +12,12 @@ const orderSchema = new mongoose.Schema({
 
 });
 
+const statusSchema = new mongoose.Schema({
+    status: { type: String, required: false, default: "None" },
+    orderTime: { type: String, required: false },
+    estimatedTime: { type: String, required: false }
+})
+
 const userSchema = new mongoose.Schema({
     id: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
@@ -20,7 +26,7 @@ const userSchema = new mongoose.Schema({
     phoneNumber: { type: String },
     history: { type: Array },
     order: { type: [orderSchema] },
-    orderStatus: { type: String, default: "None" }
+    orderStatus: { type: statusSchema, default: () => ({ status: "None", orderTime: null, estimatedTime: null }) }
 });
 
 const User = mongoose.model('User', userSchema);

@@ -3,9 +3,11 @@ import OrderStatus from "@/app/components/OrderStatus"
 
 export default function OrderInfoPage() {
     return (
-        <div>
+        <div className="bg-yellow-50 h-screen">
             <Navbar />
-            <OrderStatus />
+            <div className="flex items-center justify-center h-[80vh]">
+                <OrderStatus />
+            </div>
         </div>
     )
 }

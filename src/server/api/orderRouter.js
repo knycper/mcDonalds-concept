@@ -1,6 +1,7 @@
 import express from 'express';
 import User from '../models/User.js';
 import sendOrder from '../mqtt/usersMQTT/mqttPublishOrder.js';
+import publishNewOrderStatus from "../mqtt/staffsMQTT/mqttPublishNewOrderStatus.js"
 
 const router = express.Router();
 
@@ -113,7 +114,7 @@ router.post('/publishedOrder', async (req, res) => {
 
                 user.history.push(order)
 
-                user.orderStatus = "In progress"
+                user.orderStatus.status = "In progress"
 
                 user.order = []
 
@@ -129,6 +130,101 @@ router.post('/publishedOrder', async (req, res) => {
         console.log(error);
         return res.status(500).json({ message: "Błąd serwera!" });
     }
+})
+
+router.post('/publishedOrder/update', async (req, res) => {
+    try {
+        const { email, status } = req.body
+        console.log(status, "status w axios")
+
+        const user = await User.findOne({ email })
+
+        if (!user) return res.status(404).json({ message: "Wystąpił błąd spróbuj ponownie" })
+
+        console.log("znaleziono uzytkownika")
+
+        publishNewOrderStatus(status, email, async (succes, errorMess) => {
+            if (succes) {
+                user.orderStatus.status = status
+                user.orderStatus.orderTime = null
+                user.orderStatus.estimatedTime = null
+                await user.save()
+                return res.status(200).json({ message: "Zaktualizowano status pomyślnie" })
+            } else {
+                return res.status(500).json({ message: "Wystąpił błąd", error: errorMess })
+            }
+        })
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message: "Błąd serwera!" });
+    }
+
+})
+
+router.post('/reveivedOrder', async (req, res) => {
+    try {
+        const { email } = req.body
+        const user = await User.findOne({ email })
+
+        if (!user) return res.status(404).json({ message: "Wystąpił błąd spróbuj ponownie" })
+
+        user.orderStatus.status = "None";
+        user.orderStatus.orderTime = null;
+        user.orderStatus.estimatedTime = null;
+
+        await user.save()
+
+        return res.status(200).json({ message: "Zaktualizowano status!" })
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message: "Błąd serwera!" });
+    }
+})
+
+router.post('/timeUpdate', async (req, res) => {
+    try {
+        const { email, orderTime, estimatedTime } = req.body
+
+        const user = await User.findOne({ email })
+
+        if (!user) return res.status(404).json({ message: "Wystąpił błąd spróbuj ponownie" })
+
+        user.orderStatus.orderTime = orderTime
+        user.orderStatus.estimatedTime = estimatedTime
+
+        await user.save()
+
+        const orderFullStatus = user.orderStatus
+        console.log("zaktualizowany orderStatus: ", orderFullStatus)
+
+        return res.status(200).json({ message: "Zaktualizowano czas zamówienia!", orderStatus: orderFullStatus })
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message: "Błąd serwera!" });
+    }
+})
+
+router.post('/deletedReaction', async (req, res) => {
+    try {
+        const { email } = req.body
+
+        const user = await User.findOne({ email })
+
+        if (!user) return res.status(404).json({ message: "Wystąpił błąd spróbuj ponownie" })
+
+        user.orderStatus.status = "None"
+        user.orderStatus.orderTime = null
+        user.orderStatus.estimatedTime = null
+
+        await user.save()
+
+        return res.status(200).json({ message: "Poprawnie zaktualizowano bazę" })
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message: "Błąd serwera!" });
+    }
+
 })
 
 export default router;

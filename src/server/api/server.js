@@ -2,6 +2,9 @@ import express from 'express';
 import cors from 'cors';
 import userRoutes from './userRouter.js';
 import orderRoutes from './orderRouter.js';
+import connectDB from '../database.js';
+
+connectDB()
 
 const app = express();
 const port = 3001;
