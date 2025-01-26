@@ -21,7 +21,7 @@ export default function HomePage() {
     }
 
     return (
-        <div className="bg-yellow-50 h-full">
+        <div className="bg-yellow-50 h-full overflow-hidden">
             <Navbar />
             <div className="flex">
                 {/* Menu z kategoriami */}

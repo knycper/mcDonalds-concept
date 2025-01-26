@@ -201,7 +201,7 @@ export default function OrderList() {
                 </div>
             </div>
             {showPayment && (
-                <Payment price={orderPrice} handleBack={cancelPayment} orderSet={() => setOrder([])} />
+                <Payment price={orderPrice} handleBack={cancelPayment} orderSet={() => setOrder([])} closeEdit={() => setOrderId("")} />
             )}
         </div>
     );

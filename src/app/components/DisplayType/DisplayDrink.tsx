@@ -3,6 +3,8 @@ import { Drink, AllOrders, DrinkOrder, MenuData } from "../types/types";
 import Image from "next/image";
 import useMenu from "../MenuContext";
 import axios from "axios";
+import ModalError from "../modals/ModalError";
+import ModalSucces from "../modals/ModalSucces";
 
 interface DisplayDrinkProps {
     drinkId?: string;
@@ -171,7 +173,7 @@ export default function DisplayDrink({
                 <div>
                     <div className="text-2xl font-bold mb-4">{drink.name}</div>
                     <div className="text-xl font-semibold mb-4">Cena: {drink.price[0].price} zł</div>
-                    <Image src={drink.imageUrl} alt={`${drink.name} zdjęcie`} width={150} height={150} />
+                    <Image src={drink.imageUrl} alt={`${drink.name} zdjęcie`} width={150} height={150} priority />
                 </div>
             </div>
             <div className="flex flex-col gap-6 mb-4">
@@ -199,15 +201,11 @@ export default function DisplayDrink({
             </button>
 
             {added && (
-                <div className="mt-4 text-green-600 font-medium text-center">
-                    {orderId ? "Zaktualizowano Zamówienie!" : "Dodano zamówienie!"}
-                </div>
+                <ModalSucces message={orderId ? "Zaktualizowano Zamówienie!" : "Dodano zamówienie!"} hideModal={() => setAdded(false)} />
             )}
 
             {error.length !== 0 && (
-                <div className="mt-2 text-red-600 font-medium w-full max-w-full text-center break-words">
-                    {error}
-                </div>
+                <ModalError error={error} hideModal={() => setError("")} />
             )}
         </div>
     );

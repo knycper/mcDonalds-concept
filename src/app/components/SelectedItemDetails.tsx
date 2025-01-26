@@ -41,7 +41,7 @@ export default function SelectedItemDetails({ id, updateSite }: SelectedItemDeta
     }, [id, menuData]);
 
     if (loading || !menuData) {
-        return <LoadingSuspense>Loading...</LoadingSuspense>;
+        return <div>Loading...</div>;
     }
 
     return (

@@ -172,24 +172,12 @@ export default function DisplayNormalItem({ itemId, orderImported, updateSite, o
         if (selected) {
             const isAlreadyInAdd = selected.add.includes(obj);
 
-            // const priceChange = "2.5";
-            // const newPrice = isAlreadyInAdd
-            //     ? Number(selected.price.replace(/^0+/, '')) - Number(priceChange)
-            //     : Number(selected.price.replace(/^0+/, '')) + Number(priceChange);
-
-            // console.log(newPrice)
-            // console.log(selected.price, " - ", priceChange, " = ", newPrice)
-
             const updatedAdd = isAlreadyInAdd
                 ? selected.add.filter(item => item !== obj)
                 : [...selected.add, obj];
 
-            // const finalPrice = sprawdzKropke(String(newPrice))
-            // console.log(finalPrice)
-
             setSelected({
                 ...selected,
-                // price: finalPrice,
                 add: updatedAdd,
             });
         }
@@ -213,7 +201,7 @@ export default function DisplayNormalItem({ itemId, orderImported, updateSite, o
                 <div>
                     <div className="text-2xl font-bold mb-4">{item.name}</div>
                     <div className="text-xl font-semibold mb-4">Cena: {item.price} zł</div>
-                    <Image src={item.imageUrl} alt={`${item.name} zdjęcie`} width={150} height={150} />
+                    <Image src={item.imageUrl} alt={`${item.name} zdjęcie`} width={150} height={150} priority />
                 </div>
                 <button
                     onClick={() => setAllerg(prev => !prev)}

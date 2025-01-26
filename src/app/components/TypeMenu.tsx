@@ -35,7 +35,7 @@ export default function TypeMenu({ type, setSelectedItemId }) {
                                     alt={`${napoj.name} zdjęcie`}
                                     width={150}
                                     height={100}
-                                    className="mt-4 rounded-lg max-w-full"
+                                    priority
                                 />
                             </div>
                         ))

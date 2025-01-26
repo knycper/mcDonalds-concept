@@ -6,9 +6,10 @@ interface PaymentProps {
     price: string;
     handleBack: () => void;
     orderSet: () => void;
+    closeEdit: () => void;
 }
 
-export default function Payment({ price, handleBack, orderSet }: PaymentProps) {
+export default function Payment({ price, handleBack, orderSet, closeEdit }: PaymentProps) {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [info, setInfo] = useState<string>("");
     const [orderType, setOrderType] = useState<string>("")
@@ -46,9 +47,10 @@ export default function Payment({ price, handleBack, orderSet }: PaymentProps) {
                     setIsLoading(false);
                     setInfo("");
                     localStorage.setItem("order", JSON.stringify([]))
+                    closeEdit()
                     orderSet()
                     closeModal();
-                }, 1000);
+                }, 2000);
             } catch (error) {
                 const message = error.response?.data?.message || "Błąd połączenia z serwerem";
                 console.log(message);

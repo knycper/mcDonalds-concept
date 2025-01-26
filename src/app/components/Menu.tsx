@@ -18,7 +18,7 @@ export default function Menu({ handle, chosen }: MenuProps) {
     }
 
     return (
-        <div className="flex flex-row bg-yellow-50 h-full w-auto">
+        <div className="flex flex-row bg-yellow-50 h-screen w-auto">
             {/* Left Menu */}
             <div className="bg-yellow-500 w-auto text-white p-6 shadow-lg overflow-y-auto">
                 <h2 className="text-xl font-semibold mb-6 text-center">Kategorie</h2>
